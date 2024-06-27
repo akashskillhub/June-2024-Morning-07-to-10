@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="Enter Your name">
+    <input type="text" placeholder="Enter Your name" value="john">
+    <input type="text" placeholder="Enter Your name" value="john" disabled>
+    <input type="text" placeholder="Enter Your name" value="john" readonly>
+
+    <hr>
+    <!-- validation attribute -->
+    <form action="abc.java">
+        <input type="text" maxlength="5" minlength="2" required>
+        <hr>
+        <input type="number" min="5" max="10" required>
+        <hr>
+        <input type="date" min="2024-06-22" max="2024-06-27">
+        <hr>
+        <!-- 
+                age  min 18
+                age  max 25
+                2006-06-22
+                1999-06-22
+         -->
+        <input type="date" min="1999-06-22" max="2006-06-22">
+        <input type="submit" value="save">
+    </form>
+
+    <!-- 
+        Q diff. between readonly and disabled attribute
+    -->
+    <hr>
+    <form action="test.py">
+        <input name="fname" type="text" value="john" readonly>
+        <input name="lname" type="text" value="ross" disabled>
+        <input type="submit" value="save">
+    </form>
+</body>
+
+</html>
