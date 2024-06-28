@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test {
+            color: red;
+        }
+
+        .text-blue {
+            color: blue;
+        }
+
+        /* ❌ Avoid using Id as Selector */
+        #title {
+            background-color: yellow;
+        }
+
+        .bg-green {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="test bg-green">hello</h1>
+    <h1 class="text-blue">world</h1>
+    <p id="title">
+        Lorem ipsum dolor sit amet.
+    </p>
+
+    <h2 class="test">Lorem ipsum dolor sit amet.</h2>
+
+    <!-- ❌ do not repeat id -->
+    <h2 id="title">Lorem ipsum dolor sit amet.</h2>
+
+    <!-- 
+        selector        unique       reuse      multiple
+        class             no          yes          yes
+        id                yes         no           no
+    -->
+</body>
+
+</html>
