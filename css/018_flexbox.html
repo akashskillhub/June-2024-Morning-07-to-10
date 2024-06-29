@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            Rule
+            1   Parent Child
+        
+        */
+        .main {
+            height: 400px;
+            background-color: gray;
+            display: flex;
+
+            /* justify-content: center; */
+            /* justify-content: flex-end; */
+            justify-content: space-between;
+            /* justify-content: space-around; */
+            /* justify-content: space-evenly; */
+
+            /*                  👇 Default */
+            /* justify-content: flex-start; */
+
+            /*            👇 Default */
+            /* align-items: stretch; */
+            /* align-items: flex-start; */
+            /* align-items: center; */
+            /* align-items: flex-end; */
+
+            /* gap: 50px; */
+
+            /* align-items: center; */
+
+
+        }
+
+        .child1 {
+            background-color: red;
+            /* flex: 3; */
+            /* align-self: center; */
+
+        }
+
+        .child2 {
+            background-color: blue;
+            /* flex: 1; */
+            /* align-self: flex-end; */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="child1">child1</div>
+        <div>
+            <div class="child2">child2</div>
+            <div class="child1">child3</div>
+        </div>
+    </div>
+</body>
+
+</html>
