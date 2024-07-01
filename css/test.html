@@ -6,16 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        span {
-            margin: 0px auto;
-            border: solid;
-            /* text-align: center; */
+        .main {
+            height: 600px;
+            background-color: gray;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .navbar {
+            background-color: red;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0px 100px;
+        }
+
+        .footer {
+            display: flex;
+            background-color: yellowgreen;
+            padding: 0px 100px;
         }
     </style>
 </head>
 
 <body>
-    <span>hello</span>
+    <div class="main">
+        <div class="navbar">
+            <h1>Logo</h1>
+            <div>
+                <a href="">Home</a>
+                <a href="">About</a>
+                <a href="">Contact</a>
+            </div>
+            <button>Signup</button>
+        </div>
+        <div class="footer">
+            <h1>Logo</h1>
+            <ul>
+                <li>Privacy</li>
+                <li>Compnay</li>
+                <li>Terms And Conditions</li>
+            </ul>
+            <ul>
+                <li>Test</li>
+                <li>Demo</li>
+                <li>Sandbox</li>
+            </ul>
+
+        </div>
+    </div>
 </body>
 
 </html>

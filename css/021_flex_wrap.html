@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navbar {
+            /* height: 400px; */
+            width: 300px;
+            background-color: gray;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+        }
+
+        div:nth-child(even) {
+            background-color: red;
+        }
+
+        div:nth-child(odd) {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- .navbar>.child1+.child2 -->
+    <section class="navbar">
+        <div>child1</div>
+        <div>child2</div>
+        <div>child3</div>
+        <div>child4</div>
+        <div>child5</div>
+        <div>child6</div>
+        <div>child7</div>
+        <div>child8</div>
+    </section>
+</body>
+
+</html>
