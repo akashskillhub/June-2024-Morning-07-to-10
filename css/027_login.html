@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .card {
+            /* height: 300px; */
+            width: 600px;
+            border: solid purple;
+            margin: -200px auto 0px;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-header {
+            height: 200px;
+            background-color: red;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            margin: 1rem 0;
+            padding: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background-color: purple; height: 200px;"></div>
+    <div class="card">
+        <div class="card-header">
+            <h1>Secure Login</h1>
+            <p>Powered by SKILLHUB</p>
+        </div>
+        <div class="card-body">
+            <input type="text" placeholder="Enter name" name="" id="">
+            <input type="text" placeholder="Enter password" name="" id="">
+            <input type="text" placeholder="Enter pin" name="" id="">
+            <button>Login</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
