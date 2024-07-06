@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 100px;
+            width: 100px;
+            border: solid;
+
+            animation: dummy 10s infinite;
+        }
+
+        @keyframes dummy {
+            25% {
+                background-color: red;
+                margin-left: 200px;
+                margin-top: 0;
+            }
+
+            50% {
+                background-color: yellow;
+                border-radius: 50%;
+                margin-left: 200px;
+                margin-top: 200px;
+            }
+
+            75% {
+                background-color: green;
+                margin-left: 0px;
+                margin-top: 200px;
+            }
+
+            100% {
+                background-color: white;
+                border-radius: 0%;
+                margin-left: 0px;
+                margin-top: 0px;
+                /* margin-left: 0px; */
+            }
+        }
+
+        /* 
+        .box:hover {
+            background-color: red;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+
+    <!-- tailwind css -->
+</body>
+
+</html>

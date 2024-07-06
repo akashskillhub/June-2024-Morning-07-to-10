@@ -6,58 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .main {
-            background-color: gray;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
         }
 
-        .navbar {
-            background-color: red;
-            /* height: 100px; */
+        body {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 0px 100px;
+            /* background-color: yellow; */
+            height: 100vh;
         }
 
-        .footer {
-            background-color: yellowgreen;
-            /* height: 100px; */
+        .card {
+            border: 5px dashed;
+            width: 400px;
             display: flex;
-            padding: 0px 100px;
+            padding: 2rem;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
 
+        .card:hover {
+            transform: scale(1.2);
+        }
+
+        .card>img {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        @media(max-width:600px) {
+            .card {
+                flex-direction: column;
+            }
+        }
+
+        div {
+            height: 200px;
+            width: 200px;
+            border: solid;
+            overflow: hidden;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: all 0.3s;
+        }
+
+        img:hover {
+            transform: scale(1.2);
         }
     </style>
 </head>
 
 <body>
+    <!-- <div class="card">
+        <img src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        <div>
+            <h1>John Doe</h1>
+            <p>Full Stack Developer</p>
+        </div>
+    </div> -->
 
-    <div class="main">
-        <div class="navbar">
-            <h1>Logo</h1>
-            <div>
-                <a href="">Home</a>
-                <a href="">About</a>
-                <a href="">Contact</a>
-            </div>
-            <button>Signup</button>
-        </div>
-        <div class="footer">
-            <h1>Logo</h1>
-            <ul>
-                <li>Dell</li>
-                <li>Hp</li>
-                <li>Apple</li>
-            </ul>
-            <ul>
-                <li>Privacy</li>
-                <li>Terms and Conditions</li>
-                <li>Social</li>
-            </ul>
-        </div>
+    <div>
+        <img src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
     </div>
 </body>
 
