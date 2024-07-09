@@ -5,38 +5,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            object-fit: cover;
+        }
+
+        .card {
+            display: flex;
+        }
+
+        .box1 {
+            padding: 1.5rem;
+        }
+
+        .nav-links>a {
+            color: gray;
+            text-decoration: none;
+        }
+
+        .nav-links>span {
+            color: gray;
+            margin: 0 0.5rem;
+        }
+
+        .title {
+            margin: 1rem 0;
+        }
+
+        .review {
+            margin: 1rem 0;
+        }
+
+        .review>strong {
+            border-right: 2px solid gray;
+            padding-right: 10px;
+            margin-right: 10px;
+        }
+
+        .review>i {
+            color: orange;
+        }
+
+        .review>span {
+            color: gray;
+            font-size: 12px;
+        }
+
+        .desc {
+            color: gray;
+            margin: 1rem 0;
+            font-weight: 100;
+        }
+
+        .stock {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stock>i {
+            color: greenyellow;
+            font-size: 1.5rem;
+        }
+
+        .stock>span {
+            color: gray;
+        }
+
+        .sizes {
+            display: flex;
+        }
+
+        .sizes>div:nth-child(1) {
+            border: 2px solid blue;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+
+        .sizes>div:nth-child(2) {
+            padding: 1rem;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
-    <form>
 
-
-        <input type="text" placeholder="Enter Your name" required>
-        <hr>
-        <textarea placeholder="Enter Your Address"></textarea>
-        <hr>
-        <input type="number" placeholder="Entger Your Mobile">
-        <h2>Choose Gender</h2>
-        <input name="gender" type="radio" id="m">
-        <label for="m">male</label>
-
-        <input name="gender" type="radio" id="f">
-        <label for="f">female</label>
-
-        <h2>Choose SKILLS</h2>
-        <input type="checkbox" id="html">
-        <label for="html">html</label>
-
-        <input type="checkbox" id="css">
-        <label for="css">css</label>
-
-        <input type="checkbox" id="js">
-        <label for="js">js</label>
-        <hr>
-        <input type="submit" value="save">
-    </form>
-
-
+    <div class="card">
+        <div class="box1">
+            <p class="nav-links">
+                <a href="">Travel</a>
+                <span>/</span>
+                <a href="">bags</a>
+            </p>
+            <h1 class="title">Everyday Ruck Snack</h1>
+            <p class="review">
+                <strong>$220</strong>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star"></i>
+                <span>1624 reviews</span>
+            </p>
+            <p class="desc">
+                Don't compromise on snack-carrying capacity with this lightweight and spacious bag. The drawstring top
+                keeps all your favorite chips, crisps, fries, biscuits, crackers, and cookies secure.
+            </p>
+            <p class="stock">
+                <i class="bi bi-check"></i>
+                <span>In stock and ready to ship</span>
+            </p>
+            <div class="sizes">
+                <div>
+                    <h6>18L</h6>
+                    <p>Perfect for a reasonable amount of snacks.</p>
+                </div>
+                <div>
+                    <h6>21L</h6>
+                    <p>Enough room for a serious amount of snacks.</p>
+                </div>
+            </div>
+            <p>What size should I buy? <span>icon</span></p>
+            <button>Add to bag</button>
+            <p>
+                <span>icon</span>
+                Lifetime Guarantee
+            </p>
+        </div>
+        <div class="box2">
+            <img src="https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg" alt="">
+        </div>
+    </div>
 </body>
 
 </html>

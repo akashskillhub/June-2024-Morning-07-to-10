@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind.config.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+    <div class="bg-gray-200 p-8">
+        <h1 class="mb-8 font-bold">Last 30 Days</h1>
+        <div class="bg-white border rounded-md  grid grid-cols-1 md:grid-cols-3">
+            <div class="p-4 border-b-2 md:border-r-2">
+                <h1>Total Subscribers</h1>
+                <div class="flex justify-between">
+                    <div>
+                        <span class="text-blue-900 font-bold">71,897</span>
+                        <span class="text-xs text-gray-500">from 70,946</span>
+                    </div>
+                    <span class="bg-green-200 p-1 px-2 rounded-full text-xs">
+                        <i class="bi bi-arrow-up text-green-800"></i> 12%</span>
+                </div>
+            </div>
+            <div class="p-4 border-b-2 md:border-r-2">
+                <h1>Avg. Open Rate</h1>
+                <div class="flex justify-between">
+                    <div>
+                        <span class="text-blue-900 font-bold">58.16%</span>
+                        <span class="text-xs text-gray-500">from 56.14%</span>
+                    </div>
+                    <span class="bg-green-200 p-1 px-2 rounded-full text-xs">
+                        <i class="bi bi-arrow-up text-green-800"></i> 2.02%</span>
+                </div>
+            </div>
+            <div class="p-4 border-r-2">
+                <h1>Avg. Click Rate</h1>
+                <div class="flex justify-between">
+                    <div>
+                        <span class="text-blue-900 font-bold">27.16%</span>
+                        <span class="text-xs text-gray-500">from 24.14%</span>
+                    </div>
+                    <span class="bg-red-200 p-1 px-2 rounded-full text-xs">
+                        <i class="bi bi-arrow-down text-red-800"></i> 4.02%</span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+</html>
