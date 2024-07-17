@@ -10,25 +10,27 @@
 <body>
 
     <script>
-        // var y
-        //     let z
-        console.log(y)
-        var y = 20
+        const productName = "paneer", price = 500, category = "electronics", qty = 2
+        let total = price * qty
+        let tax
+        let finalBill
+        if (category === "food") {
+            tax = 5
+        } else if (category === "electronics") {
+            tax = 18
+        } else if (category === "dummy") {
+            tax = 50
+        }
+        finalBill = total + (total * tax / 100)
 
-        // Temporal Dead Zone (TDZ) : area where variable are inaccessible
-        // console.log(z)
-        let z = 10
+        console.log(`total = ${total} tax = ${tax} Bill = ${finalBill}`);
 
-        console.clear()
-
-        var a = 10
-        a = 20
-
-        let b = 20
-        b = 30
-
-        const c = 20
-        c = 30
+        /*
+            category 
+            electronics = 18%
+            food        = 5%
+            dummy       = 50%
+        */
 
     </script>
 </body>
