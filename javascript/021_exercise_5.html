@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Question: Write a JavaScript code to determine if a number is divisible by 3, 5, or both. 
+
+            Explanation: print "Divisible by both" if the number is divisible by both 3 and 5, "Divisible by 3" if only divisible by 3, "Divisible by 5" if only divisible by 5, and "Not divisible by 3 or 5" otherwise.
+        
+            Case 1
+            Input : const num= 15 
+            Expected Output : Divisible by both 
+        
+            Case 2
+            Input : const num= 10 
+            Expected Output : Divisible by 5 
+        
+            Case 3
+            Input : const num= 9 
+            Expected Output : Divisible by 3 
+        
+            Case 4
+            Input : const num= 7 
+            Expected Output : Not divisible by 3 or 5 
+    
+     */
+        const num = 9
+        // write your code here
+        if (num % 3 === 0 && num % 5 === 0) {
+            console.log("both")
+        } else if (num % 3 === 0) {
+            console.log("div. by 3")
+        } else if (num % 5 === 0) {
+            console.log("div. by 5")
+        } else {
+            console.log("Not divisible by 3 or 5 ")
+        }
+
+    </script>
+</body>
+
+</html>

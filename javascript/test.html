@@ -10,29 +10,29 @@
 <body>
 
     <script>
-        const productName = "paneer", price = 500, category = "electronics", qty = 2
-        let total = price * qty
-        let tax
-        let finalBill
-        if (category === "food") {
-            tax = 5
-        } else if (category === "electronics") {
-            tax = 18
-        } else if (category === "dummy") {
-            tax = 50
-        }
-        finalBill = total + (total * tax / 100)
-
-        console.log(`total = ${total} tax = ${tax} Bill = ${finalBill}`);
-
-        /*
-            category 
-            electronics = 18%
-            food        = 5%
-            dummy       = 50%
+        /*                      var         let         const
+        
+            redercl.            yes         no          no
+            reinit.             yes         yes         no
+            tdz                 no          yes         no
+            scope               fun.        block       block
+            mand. initlize      no          no          yes
         */
 
+        /*
+            let 1num = 10
+            let first name = "john"
+        
+        */
+        let x = 10
+        if (x > 50) {
+            console.log("hi")
+        } else {
+            console.log("bye")
+        }
+
     </script>
+
 </body>
 
 </html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            1 mon
+            2 tue
+            3 wed
+            4 thu
+            5 fri
+            6 sat
+            7 sun
+        */
+        const day = 1  // mon
+        switch (day) {
+            case 1: console.log("mon"); break;
+            case 2: console.log("tue"); break;
+            case 3: console.log("wed"); break;
+            case 4: console.log("thu"); break;
+            case 5: console.log("fri"); break;
+            case 6: console.log("sat"); break;
+            case 7: console.log("sun"); break;
+            default: console.warn("Invalid day");
+        }
+        const num = 5
+
+        switch (true) {
+            case num % 2 === 0: console.log("even"); break
+            default: console.log("Odd")
+        }
+
+        switch (true) {
+            case num % 3 === 0 && num % 5 === 0: console.log("both"); break
+            case num % 3 === 0: console.log("by 3"); break
+            case num % 5 === 0: console.log("by 5"); break
+            default: console.log("not ")
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>

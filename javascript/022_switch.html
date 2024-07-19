@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const percent = 101
+        // 35- 50   C
+        // 50-60    B
+        // 60 - 75  A
+        // 75+      A+
+
+        if (percent >= 35 && percent <= 50) {
+            console.log("C")
+        } else if (percent > 50 && percent <= 60) {
+            console.log("B")
+        } else if (percent > 60 && percent <= 75) {
+            console.log("A")
+        } else {
+            console.log("A+")
+        }
+
+        switch (true) {
+            case percent < 35: console.warn("Fail"); break
+            case percent >= 35 && percent <= 50: console.warn("C"); break
+            case percent > 50 && percent <= 60: console.warn("B"); break
+            case percent > 60 && percent <= 75: console.warn("A"); break
+            case percent > 100: console.warn("Invalid Percent"); break
+            default: console.warn("A+")
+        }
+
+    </script>
+</body>
+
+</html>
