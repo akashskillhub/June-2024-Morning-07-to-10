@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = ["dell", "hp", "apple"]
+        const rev = []
+        for (const item of arr) {
+            // rev.unshift(item)
+            rev.splice(0, 0, item)
+        }
+        console.log(rev)
+        console.warn(arr)
+    </script>
+
+</body>
+
+</html>

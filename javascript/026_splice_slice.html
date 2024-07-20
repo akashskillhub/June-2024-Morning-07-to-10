@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // splice vs slice
+        const arr = ["john", "ross", "kate"]
+        /*
+            1 start index
+            2 number of values to deleted
+        */
+        // arr.splice(1, 2)
+        /*
+            1 start index
+            2 end index
+        */
+        const x = arr.slice(1, 2)
+        console.log(x)
+        console.log(arr)
+
+        /*
+                                      slice       splice
+            modify orignal array        no          yes
+        */
+        /*
+                slice(1,2)
+                start from 1st index till 2nd index and return its value
+                
+                splice(1,2)
+                start from 1st index and remove 2 values
+        */
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const users = ["john", "kate", "ross"]
+        console.log("befor", users)
+        // users.push("rachel") // add at the end
+        // users.unshift("joe") // add at start
+        // users.pop() // remove from end
+        // users.shift() // remove from start
+
+        /*
+                1 start index
+                2 number of values to be deleted
+        */
+
+        // users.splice(1, 2)
+
+        /*
+            1       start index
+            1       number of values to be deleted
+            "bill"  value to insert
+        */
+        users.splice(1, 1, "bill")
+
+        console.log("after", users)
+    </script>
+</body>
+
+</html>
