@@ -9,12 +9,23 @@
 
 <body>
     <script>
-        const brands = ["dell", "hp", "apple", "msi", "gigabyte"]
-        // brands.shift()
-        // brands.splice(2, 1, "lenovo")
-        // brands.pop()
+        let x = 10, y = 20, z
 
-        console.log(brands)
+        console.log(x, y)
+        // z = x
+        // x = y
+        // y = z
+
+        // x = x + y // x = 30
+        // y = x - y // y = 10
+        // x = x - y // x = 20
+
+        const arr = [x, y]
+        x = arr[1]
+        y = arr[0]
+        console.log(x, y)
+        // swap
+        // x = 20 , y = 10
 
     </script>
 </body>

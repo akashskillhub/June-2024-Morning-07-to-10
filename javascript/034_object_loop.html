@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const obj = { name: "john", name: "ross" }
+        obj.name = "kate"
+        obj.age = 20
+        console.log(obj)
+
+        const test = { name: "kate", age: 20, address: "london" }
+        for (const key in test) {
+            console.log(key)
+        }
+        console.clear()
+
+        let x = "city"
+        const demo = { name: "elon" }
+        demo.age = 20
+        demo.x = "pune"  // 👈 demo.x = "pune"
+        demo[x] = "pune" // 👈 demo.city = "pune"
+        console.log(demo)
+
+        // const obj1 = { name: "john" }
+        // console.log(obj === obj1)
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const brands = [
+            {
+                name: "apple",
+                country: "usa",
+                products: ["laptop", "mobile"],
+                sell: [
+                    {
+                        country: "india",
+                        hq: "delhi",
+                        city: ["pune", "mumbai"]
+                    },
+                    {
+                        country: "usa",
+                        hq: "new york",
+                        city: ["la", "boston"]
+                    },
+                ]
+            },
+            {
+                name: "samsung",
+                country: "s koria",
+                products: ["home appl.", "mobile"],
+                sell: [
+                    { country: "india", hq: "mumbai", city: ["jalna", "delhi"] },
+                    { country: "s koria", hq: "seoul", city: ["seoul"] },
+                ]
+            },
+        ]
+
+        console.log(brands[0].sell[0].city[0])
+        console.log(brands[0].name);
+        console.log(brands[0].products[1]);
+        console.log(brands[1].sell[1].city[0])
+    </script>
+</body>
+
+</html>
