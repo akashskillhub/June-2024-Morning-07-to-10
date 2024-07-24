@@ -9,12 +9,30 @@
 
 <body>
 
-    <input type="number">
-    <input type="number">
-    <button>+</button>
-    <button>-</button>
+    <input type="number" id="num1">
+    <input type="number" id="num2">
+    <button onclick="sum()">+</button>
+    <button onclick="sub()">-</button>
     <button>*</button>
     <button>/</button>
+    <script>
+        function getValues() {
+            const x = +num1.value
+            const y = +num2.value
+            return { n1: x, n2: y }
+        }
+
+        function sum() {
+            const result = getValues()
+            console.log(result.n1 + result.n2)
+        }
+        function sub() {
+            const x = +num1.value
+            const y = +num2.value
+            console.log(x - y)
+        }
+
+    </script>
 </body>
 
 </html>

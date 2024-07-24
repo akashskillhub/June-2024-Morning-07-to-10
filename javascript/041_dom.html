@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap By SKILLHUB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="card">
+            <div class="card-header">header</div>
+            <div class="card-body" id="b">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae cumque quis aspernatur dolorum,
+                debitis tempora veniam fugit quam veritatis eum dolorem quas sunt accusamus quibusdam recusandae beatae.
+                Voluptatem, earum cumque.
+            </div>
+            <div class="card-footer">footer</div>
+        </div>
+        <button onclick="changeText()" type="button" class="btn btn-primary">click me</button>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const x = document.getElementById("b")
+        function changeText() {
+            // console.log(x.innerText) // getter
+            // x.innerText = "<h1>SKILLHUB</h1>" // setter
+            x.innerHTML = `<div class="alert alert-primary">SKILLHUB</div>` // setter
+        }
+    </script>
+</body>
+
+</html>

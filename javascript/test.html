@@ -8,13 +8,16 @@
 </head>
 
 <body>
+
     <script>
-        // const arr = [10]
-        // arr.push(60)
-        // console.warn(arr)
-        const s1 = { name: "ross" } // address 123
-        s1.age = 25 // ok
-        // s1 = {} // error 
+        function test(arg) {
+            return 10
+        }
+        function demo(arg) {
+            return arg() + arg()
+            return 10 + 10
+        }
+        const result = demo(test)
 
     </script>
 </body>
