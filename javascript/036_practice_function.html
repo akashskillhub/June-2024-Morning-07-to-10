@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function test() {
+            return "dell"
+        }
+        // const x = test() // return value of the function
+        const x = test // entire function
+        console.log(x)
+        console.clear()
+
+        function dummy(p1, p2) {
+            return p1 + p2(20)
+            // return 10 + 20
+        }
+        function demo(arg) {
+            return arg
+        }
+        const result = dummy(demo(10), demo)
+        console.log(result)
+
+
+    </script>
+
+</body>
+
+</html>

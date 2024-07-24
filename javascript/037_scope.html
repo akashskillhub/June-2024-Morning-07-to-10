@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        /*
+            global
+            functional
+            block
+        */
+
+        //waht is closure?
+        var brand = "apple"  // global scope
+        function test() {
+            console.log(brand)
+            if (true) {
+                var x = 10
+                let y = 10
+                const z = 10
+            }
+            console.log(x) // functional
+            console.log(y) // block  👈 ERROR 
+            console.log(z) // block  👈 ERROR 
+        }
+
+        test()
+
+        // console.log(z)
+
+    </script>
+
+</body>
+
+</html>

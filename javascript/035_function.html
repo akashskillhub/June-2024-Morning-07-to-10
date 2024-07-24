@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        /*
+            redundant code minimize
+        */
+        /*
+         function                               => keywords
+         test                                   => function name
+         ()                                     => parenthesis
+         {}                                     => cury bracket
+         console.log("hello from fn")           => function body
+         test()                                 => function call
+        */
+        function test() {
+            console.log("hello from fn")
+        }
+        // test()  // function call
+        test()  // function call
+
+        const x = test // address 123
+        console.log(x)
+
+        // call by ref      array , object , function
+
+        console.clear()
+
+        //             👇 parameter 
+        function demo(arg, arg1) {
+            console.log(arg + arg1)
+
+        }
+        //     👇 argument
+        demo(10, 20)
+        demo(5, 25)
+        console.clear()
+
+        /*
+            1 call by ref
+            2 parameters / arguments
+            3 return
+        */
+
+        function square(p1) {
+            // const result = p1 * p1
+            return p1 + p1
+        }
+        const res = square(3)
+        console.log(res)
+
+    </script>
+</body>
+
+</html>
