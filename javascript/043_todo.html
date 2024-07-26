@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap By SKILLHUB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <div class="card">
+                    <div class="card-header">Todo App</div>
+                    <div class="card-body">
+                        <input type="text" placeholder="Enter task" id="task" class="form-control">
+                        <input type="date" id="due" class="form-control my-2">
+                        <button onclick="handleAddTodo()" class="btn btn-primary my-2 w-100">Add</button>
+                    </div>
+                </div>
+                <div class="mt-2" id="root"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const task = document.getElementById("task")
+        const due = document.getElementById("due")
+        const root = document.getElementById("root")
+        const notes = []
+        function handleAddTodo() {
+            if (task.value !== "") {
+                const obj = { task: task.value, due: due.value }
+                notes.push(obj)
+                task.value = ""
+                due.value = ""
+                handleDisplayTodo()
+            }
+        }
+
+        function handleDelete(i) {
+            notes.splice(i, 1)
+            handleDisplayTodo()
+        }
+
+        function handleDisplayTodo() {
+            root.innerHTML = ""
+            let index = 0
+            for (const item of notes) {
+                root.innerHTML += `
+                      <div class="alert alert-primary d-flex justify-content-between">
+                        <strong>${item.task}</strong>
+                        <strong>${item.due}</strong>
+                        <div>
+                            <button class="btn-sm btn btn-outline-success">complete</button>
+                            <button class="btn-sm btn btn-outline-danger" onclick="handleDelete(${index})">delete ${index}</button>
+                        </div>
+                    </div>
+                `
+                index++
+            }
+        }
+    </script>
+</body>
+
+</html>
