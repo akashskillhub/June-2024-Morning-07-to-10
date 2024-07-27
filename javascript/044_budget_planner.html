@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap By SKILLHUB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">Budget Planner</div>
+                    <div class="card-body">
+                        <input class="form-control my-2" type="text" placeholder="Enter reason" id="reason">
+                        <input class="form-control my-2" type="number" placeholder="Enter amount" id="amount">
+                        <input class="form-control my-2" type="date" id="date">
+                        <select class="form-control my-2" id="type">
+                            <option disabled selected>Choose type</option>
+                            <option value="debit">Debit</option>
+                            <option value="credit">Credit</option>
+                        </select>
+                        <button class="btn btn-primary w-100 btn-lg" onclick="handleSubmit()">Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        Balance :<strong id="balance"></strong>
+                    </div>
+                    <div class="card-body">
+                        <div id="root"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control my-2" type="text" id="ereason">
+                    <input class="form-control my-2" type="text" id="eamount">
+                    <input class="form-control my-2" type="date" id="edate">
+                    <select class="form-control my-2" id="etype">
+                        <option selected disabled>Choose Type</option>
+                        <option value="debit">Debit</option>
+                        <option value="credit">Credit</option>
+                    </select>
+                    <button data-bs-dismiss="modal" onclick="handleUpdate()" type="button"
+                        class="btn btn-warning w-100 btn-lg">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const reason = document.getElementById("reason")
+        const amount = document.getElementById("amount")
+        const date = document.getElementById("date")
+        const type = document.getElementById("type")
+        const root = document.getElementById("root")
+        const balance = document.getElementById("balance")
+
+        const ereason = document.getElementById("ereason")
+        const eamount = document.getElementById("eamount")
+        const edate = document.getElementById("edate")
+        const etype = document.getElementById("etype")
+        const account = [
+            { reason: "salary", amount: 25000, date: "2024-07-1", type: "credit" },
+            { reason: "petrol", amount: 5000, date: "2024-07-24", type: "debit" },
+            { reason: "mobile", amount: 15000, date: "2024-07-24", type: "debit" },
+        ]
+        let selectedIndex
+
+        function handleSubmit() {
+            account.push({
+                reason: reason.value,
+                amount: +amount.value,
+                date: date.value,
+                type: type.value
+            })
+            handleDispaly()
+        }
+
+        function handleDispaly() {
+            let creditSum = 0, debitSum = 0, index = 0
+            root.innerHTML = ""
+            for (const item of account) {
+                if (item.type === "debit") {
+                    debitSum += item.amount
+                } else {
+                    creditSum += item.amount
+                }
+                root.innerHTML += `
+                        <div class="alert ${item.type === "credit" ? "alert-success" : "alert-danger"}  d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>${item.reason}</strong>
+                                <p>${item.date}</p>
+                            </div>
+                            <strong>${item.amount}</strong>
+                            <button data-bs-toggle="modal" data-bs-target="#editModal" onclick="handleEdit(${index})" type="button" class="btn btn-outline-warning btn-sm">Edit</button>
+                        </div>
+                `
+                index++
+            }
+            balance.innerHTML = creditSum - debitSum
+        }
+
+        function handleEdit(i) {
+            // console.log(i, "edit clicked")
+            selectedIndex = i
+            ereason.value = account[i].reason
+            eamount.value = account[i].amount
+            edate.value = account[i].date
+            etype.value = account[i].type
+        }
+
+        function handleUpdate() {
+            account[selectedIndex].reason = ereason.value
+            account[selectedIndex].amount = +eamount.value
+            account[selectedIndex].type = etype.value
+            account[selectedIndex].date = edate.value
+            handleDispaly()
+        }
+
+        handleDispaly()
+    </script>
+</body>
+
+</html>

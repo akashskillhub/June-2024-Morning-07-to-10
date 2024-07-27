@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap By SKILLHUB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="root"></div>
+    <button onclick="displayTable()">table</button>
+    <button onclick="displayList()">ul</button>
+    <button onclick="displayGrid()">grid</button>
+
+
+
+    <script>
+        const output = document.getElementById("root")
+        const arr = [
+            { fname: "john", lname: "doe" },
+            { fname: "ross", lname: "galler" },
+            { fname: "rachel", lname: "green" },
+            { fname: "ethan", lname: "dummy" },
+        ]
+        function displayTable() {
+            let str = `
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>fname</th>
+                            <th>lname</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `
+            for (const item of arr) {
+                str += `<tr>
+                        <td>${item.fname}</td>
+                        <td>${item.lname}</td>
+                    </tr>`
+            }
+
+            str += `</tbody>
+                </table>`
+
+            output.innerHTML = str
+        }
+        function displayList() {
+            let whatever = `<ul>`
+            for (const item of arr) {
+                whatever += `<li>${item.fname} ${item.lname}</li>`
+            }
+            whatever += `</ul>`
+            output.innerHTML = whatever
+        }
+        function displayGrid() {
+            let whatever = `<div class="container">
+        <div class="row">`
+            for (const item of arr) {
+                whatever += `<div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header">Hi my name is ${item.fname}</div>
+                    <div class="card-body">${item.fname} ${item.lname}</div>
+                </div>
+            </div>`
+            }
+            whatever += `</div>
+                </div>
+                `
+            output.innerHTML = whatever
+        }
+        // budget planner
+    </script>
+
+</body>
+
+</html>

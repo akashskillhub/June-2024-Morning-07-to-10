@@ -8,11 +8,31 @@
 </head>
 
 <body>
+    <input type="text" id="inp1">
+    <input type="text" id="inp2">
+    <button onclick="handleSubmit()">click me</button>
+
+    <div id="root"></div>
     <script>
-        const arr = ["dell", "hp", "apple"]
-        // arr.splice(1, 1)
-        // arr.splice(0, 1)
-        arr.splice(2, 1)
+        const arr = [
+            { fname: "john", lname: "doe" },
+            { fname: "ross", lname: "galler" },
+            { fname: "rachel", lname: "green" },
+        ]
+        const input1 = document.getElementById("inp1")
+        const input2 = document.getElementById("inp2")
+        const output = document.getElementById("root")
+        let index = 0
+        for (const item of arr) {
+            output.innerText += `<div>${item.fname} ${item.lname} <button onclick="handleEdit(${index})">edit</button>  </div>`
+            index++
+        }
+
+        function handleSubmit() { }
+        function handleEdit(i) {
+            input1.value = arr[i].fname
+            input2.value = arr[i].lname
+        }
     </script>
 
 </body>
