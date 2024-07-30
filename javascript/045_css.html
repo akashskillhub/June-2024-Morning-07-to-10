@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .alert {
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid gray;
+            background-color: rgb(227, 227, 227);
+            border-radius: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="alert">hello</div>
+    <h1 id="title">helllo</h1>
+    <button onclick="test()">click me</button>
+
+    <button onclick="addClass()">add class</button>
+    <button onclick="removeClass()">remove class</button>
+    <button onclick="hasClass()">has class</button>
+
+    <script>
+        const title = document.getElementById("title")
+        function addClass() {
+            title.classList.add("alert")
+        }
+        function removeClass() {
+            title.classList.remove("alert")
+        }
+        function hasClass() {
+            const x = title.classList.contains("alert")
+            console.log(x)
+        }
+
+        function test() {
+            title.style.padding = "10px"
+            title.style.margin = "10px"
+            title.style.border = "2px solid gray"
+            title.style.backgroundColor = "rgb(227, 227, 227)"
+            title.style.borderRadius = "10px"
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap By SKILLHUB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .parent {
+            display: flex;
+            width: 300px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            height: 100px;
+            width: 100px;
+            border: 2px solid gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <div class="parent">
+                    <div onclick="playGame('box-1')" class="box" id="box-1"></div>
+                    <div onclick="playGame('box-2')" class="box" id="box-2"></div>
+                    <div onclick="playGame('box-3')" class="box" id="box-3"></div>
+                    <div onclick="playGame('box-4')" class="box" id="box-4"></div>
+                    <div onclick="playGame('box-5')" class="box" id="box-5"></div>
+                    <div onclick="playGame('box-6')" class="box" id="box-6"></div>
+                    <div onclick="playGame('box-7')" class="box" id="box-7"></div>
+                    <div onclick="playGame('box-8')" class="box" id="box-8"></div>
+                    <div onclick="playGame('box-9')" class="box" id="box-9"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let chance = true
+        function playGame(id) {
+            const selectedBox = document.getElementById(id)
+            if (!selectedBox.classList.contains("bg-danger") && !selectedBox.classList.contains("bg-primary")) {
+                if (chance) {
+                    selectedBox.innerHTML = `<h1>X</h1>`
+                    selectedBox.classList.add("bg-danger")
+                    chance = false
+                } else {
+                    selectedBox.innerHTML = `<h1>O</h1>`
+                    selectedBox.classList.add("bg-primary")
+                    chance = true
+                }
+            }
+            isWinner()
+
+        }
+
+        function isWinner() {
+            const isBox1Red = document.getElementById("box-1").classList.contains("bg-danger")
+            const isBox2Red = document.getElementById("box-2").classList.contains("bg-danger")
+            const isBox3Red = document.getElementById("box-3").classList.contains("bg-danger")
+            if (isBox1Red && isBox2Red && isBox3Red) {
+                console.log("Red Box Winner")
+                resetGame()
+            }
+        }
+
+        function resetGame() {
+            document.getElementById("box-1").classList.remove("bg-danger")
+            document.getElementById("box-1").innerHTML = ""
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
