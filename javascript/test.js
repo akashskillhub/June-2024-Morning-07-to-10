@@ -1,7 +1,1 @@
-if (true) {
-    console.log("hello")
-} else {
-    console.log("bye")
-}
-
-console.log("xxxxxxx")
+console.log(10 > 50 && 10 < 50 && 10 === 10)
