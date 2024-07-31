@@ -8,20 +8,19 @@
 </head>
 
 <body>
-
+    <button onclick="stopInterval()">stop</button>
 
     <script>
-        function test(p1, p2) {
-            p1 = p2
-            p2 = p1
-            return p1 + p2
+        function test() {
+            console.log("hello")
         }
-        // demo => higher order function
-        //             👇 callback
-        function demo(arg) {
+        // setTimeout(test, 5000)
+        const x = setInterval(test, 1000)
 
+        function stopInterval() {
+            clearInterval(x)
         }
-        const x = demo(test)
+
     </script>
 </body>
 

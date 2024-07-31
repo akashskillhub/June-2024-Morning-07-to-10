@@ -8,20 +8,19 @@
 </head>
 
 <body>
-
-
     <script>
-        function test(p1, p2) {
-            p1 = p2
-            p2 = p1
-            return p1 + p2
-        }
-        // demo => higher order function
-        //             👇 callback
-        function demo(arg) {
+        const arr = ["dell", "hp", "apple"]
 
+        for (const item of arr) {
+            console.warn(item)
         }
-        const x = demo(test)
+
+        for (let i = 0; i < arr.length; i++) {
+            console.log(arr[i])
+        }
+
+
+
     </script>
 </body>
 

@@ -1,5 +1,7 @@
-const arr = [
-    { amount: 50 },
-    { amount: 70 },
-]
-arr[1].amount = 700
+if (true) {
+    console.log("hello")
+} else {
+    console.log("bye")
+}
+
+console.log("xxxxxxx")
