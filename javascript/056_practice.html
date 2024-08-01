@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = [10]
+        const [x = 0, y = 0, z = 100] = arr
+        console.log(x)
+        console.log(y)
+        console.log(z)
+        console.clear()
+
+        const obj = { name: "ross", age: 25 }
+        const { name, age = 10 } = obj
+        console.log(age)
+
+        const state = { name: "admin", role: "admin" }
+        const useSelector = () => state
+
+        const { role } = useSelector()
+        console.log(role);
+        console.clear()
+
+        const checkEmpty = (arg) => {
+            let isError = false, e
+            if (arg === "") {
+                isError = true
+                e = "This field is required"
+            }
+            return {
+                hasError: isError,
+                error: e
+            }
+        }
+
+        const { hasError, error } = checkEmpty("dell")
+        if (hasError) {
+            console.log(error)
+        } else {
+            console.log("all good")
+        }
+
+        // rest and spread oprator
+        // promise
+        // array methods => map, reduce, filter, find, findIndex, some 
+
+    </script>
+</body>
+
+</html>

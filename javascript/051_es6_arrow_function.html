@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // arrow / lambda  functions
+
+        // 👇 supports this keyword
+        function test(arg) {
+            return arg
+        }
+
+        // 👇 do not support this keyword
+        const demo = (arg, arg1) => arg + arg1
+
+        // const demo = (arg, arg1) => {
+        //     return arg + arg1
+        // }
+
+        const x = test(10)
+        console.warn("x", x)
+
+        const y = demo(20, 20)
+        console.warn("y", y)
+
+    </script>
+
+</body>
+
+</html>
