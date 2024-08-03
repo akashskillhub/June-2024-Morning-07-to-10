@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //           👇 rest oprator
+        const sum = (...n1) => {
+            console.log(n1)
+            let total = 0
+            for (const item of n1) {
+                total += item
+            }
+            return total
+        }
+        const x = sum(10, 20, 30, 40)
+        console.log(x)
+
+        console.clear()
+
+        // const calculate = (...arg, brand, num) => { // ERROR
+        const calculate = (brand, num, ...arg) => {
+            console.log(brand)
+            console.log(num)
+            console.log(arg)
+        }
+        const z = calculate("dell", 10)
+        console.clear()
+
+
+        const arr = ["dell", "hp"]
+        console.log(arr)
+        //          👇 spread oprator
+        console.log(...arr)
+
+
+
+    </script>
+</body>
+
+</html>

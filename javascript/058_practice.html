@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const arr = [10, 20, 30] // x11
+        // // x = arr // address of arr
+        // x = [...arr] // shalow copy
+        // x.push(40)
+        // console.log(x)
+        // console.log(arr)
+        // console.clear()
+
+        // const obj = { name: "ross", age: 20 }
+        // // const result = obj
+        // const result = { ...obj } // shalow copy
+        // result.city = "london"
+        // console.log(result)
+        // console.log(obj)
+
+        console.clear()
+        const a = [10, 20]
+        const b = ["dell", "hp"]
+        const c = [...a, ...b]
+
+        const o1 = { name: "ross" }
+        const o2 = { city: "london", name: "ethan" }
+        // const o3 = { ...o2, ...o1 }  // merge or concat
+        const { name } = { ...o2, ...o1 }  // merge or concat
+        console.log(name)
+
+
+
+
+    </script>
+</body>
+
+</html>
