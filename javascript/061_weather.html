@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="city">
+    <button onclick="handleWeather()">show</button>
+    <div id="root"></div>
+
+    <script>
+        const handleWeather = async () => {
+            try {
+                const city = document.querySelector("#city").value
+                const API_KEY = "3dea525bd734a6c4f89ab2fb9e025109"
+                const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+                const data = await fetch(URL)
+                const { weather, main } = await data.json()
+                document.getElementById("root").innerHTML = `
+                    <h1>${weather[0].main}</h1>
+                    <p>Temp : ${main.temp - 273.15} Celcius</p>
+                    <p>Max Temp : ${main.temp_max - 273.15} Celcius</p>
+                    <p>Min Temp : ${main.temp_min - 273.15} Celcius</p>
+                `
+            } catch (error) {
+                console.log(error)
+            }
+
+            // modules
+            // array method
+            // date
+            // error handling
+            // debugging
+
+        }
+    </script>
+</body>
+
+</html>

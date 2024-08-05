@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // success   => resolve
+        // fail      => reject
+
+
+
+        let num = 10
+        const x = new Promise((resolve, reject) => {
+            if (num < 100) {
+                resolve("DELLLL")
+            } else {
+                reject("not ok")
+            }
+        })
+
+        x
+            .then((data) => { console.log(data) })
+            .catch((err) => { console.warn(err) })
+
+        // OR
+
+        const demo = async () => {
+            try {
+                const result = await x
+                console.log(result)
+            } catch (err) {
+                console.warn(err)
+            }
+
+        }
+        demo()
+
+
+
+    </script>
+</body>
+
+</html>
