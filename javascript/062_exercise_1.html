@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const data = {
+            "coord": {
+                "lon": -0.1257,
+                "lat": 51.5085
+            },
+            "weather": [
+                {
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon": "04n"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 287.85,
+                "feels_like": 287.65,
+                "temp_min": 286.43,
+                "temp_max": 288.79,
+                "pressure": 1014,
+                "humidity": 87,
+                "sea_level": 1014,
+                "grnd_level": 1011
+            },
+            "visibility": 10000,
+            "wind": {
+                "speed": 3.13,
+                "deg": 223,
+                "gust": 4.47
+            },
+            "clouds": {
+                "all": 53
+            },
+            "dt": 1722823999,
+            "sys": {
+                "type": 2,
+                "id": 2093698,
+                "country": "GB",
+                "sunrise": 1722832249,
+                "sunset": 1722886926
+            },
+            "timezone": 3600,
+            "id": 2643743,
+            "name": "London",
+            "cod": 200
+        }
+
+        // Task 1: Print Country and timezone and wind speed
+
+        console.log(data.sys.country)
+        console.log(data.timezone)
+        console.log(data.wind.speed)
+
+
+    </script>
+</body>
+
+</html>

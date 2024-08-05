@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = [10, 20, 30, 40]
+        // find
+        const x = arr.find((item) => item === 50)
+        const y = arr.findIndex((item) => item === 10)
+        console.log(x)
+        console.log(y)
+
+        // filter
+        const z = arr.filter(item => item > 18 && item < 35)
+        console.log(z)
+
+        // map  => data transform
+        // const p = arr.map(item => item * item)
+        const p = arr.map(item => `<h1>${item}</h1>`)
+        console.log(p)
+
+        // reduce  => returns single value
+
+
+
+
+
+    </script>
+</body>
+
+</html>
