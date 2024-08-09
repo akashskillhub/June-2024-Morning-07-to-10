@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const arr = [10, 20, 30]
+        // find
+        // findIndex
+        // const x = arr.findIndex(item => item === 20)
+        // const x = arr.filter(item => item > 50)
+        // const x = arr.filter(item => item != 20)
+
+        // const x = arr.map(item => item * item)
+        // const x = arr.map(item => `<h1>${item}</h1>`)
+        // console.log(x)
+
+        // let sum = 0
+        // for (const item of arr) {
+        //     sum += item
+        // }
+        // console.log(sum)
+        // 0 initial / previouse value
+
+        const x = arr.reduce((sum, item) => sum + item, 0)
+
+        console.log(x)
+
+        console.log(arr)
+
+
+    </script>
+</body>
+
+</html>

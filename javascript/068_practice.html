@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const cart = [
+            { name: "keyboard", price: 1000 },
+            { name: "mouse", price: 800 },
+            { name: "webcam", price: 1800 },
+        ]
+        // const x = cart.filter(item => item.price < 1500)
+        // const x = cart.find(item => item.name === "ram")
+        // const x = cart.filter(item => item.name !== "mouse")
+        // const x = cart.reduce((sum, item) => sum + item.price, 0)
+        const x = cart.map(item => `  
+            <h1>${item.name}</h1>
+            <p>${item.price}</p>
+        ` )
+        // console.log(x)
+        document.getElementById("root").innerHTML = x
+
+    </script>
+</body>
+
+</html>
