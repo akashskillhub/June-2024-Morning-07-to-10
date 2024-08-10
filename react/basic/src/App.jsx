@@ -21,9 +21,9 @@ const App = () => {
     {/* <Learnprops></Learnprops> */}
     {/* <Practiceprops></Practiceprops> */}
     {/* <Practiceprops /> */}
-    {/* <Practicetest /> */}
+    <Practicetest />
     {/* <LearnState /> */}
-    <PracticeState />
+    {/* <PracticeState /> */}
   </div>
 }
 
