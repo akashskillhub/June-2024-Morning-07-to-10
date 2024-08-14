@@ -21,9 +21,19 @@ const App = () => {
     {/* <Learnprops></Learnprops> */}
     {/* <Practiceprops></Practiceprops> */}
     {/* <Practiceprops /> */}
-    <Practicetest />
+    {/* <Practicetest /> */}
     {/* <LearnState /> */}
     {/* <PracticeState /> */}
+    <Test x={100}>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae quas quis impedit, facilis numquam soluta aspernatur? Quaerat ratione fuga quis repudiandae similique cum officia, repellat ullam minus excepturi voluptas nesciunt.</p>
+    </Test>
+  </div>
+}
+
+const Test = ({ x, children }) => {
+  return <div>
+    <h1>test {x}</h1>
+    {children}
   </div>
 }
 
