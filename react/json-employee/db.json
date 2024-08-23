@@ -1,0 +1,18 @@
+{
+  "employees": [
+    {
+      "name": "kate doe",
+      "gender": "female",
+      "department": "backend",
+      "doj": "2024-09-07",
+      "id": 1
+    },
+    {
+      "name": "ross",
+      "gender": "male",
+      "department": "sales",
+      "doj": "2024-08-23",
+      "id": 2
+    }
+  ]
+}

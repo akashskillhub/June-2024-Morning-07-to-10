@@ -1,0 +1,27 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "rossaaaa",
+            "age": 20
+        },
+        {
+            "id": 2,
+            "name": "kate assd asdasdas ",
+            "age": "2166"
+        }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "name": "awesome keyboard",
+            "price": 1200
+        },
+        {
+            "id": 2,
+            "name": "test mouse",
+            "price": "5001"
+        }
+    ],
+    "notes": []
+}
