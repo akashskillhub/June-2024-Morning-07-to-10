@@ -1,3 +1,10 @@
 {
-    "notes": []
+  "notes": [
+    {
+      "task": "ghf",
+      "desc": "ghjgh",
+      "priority": "High",
+      "id": 10
+    }
+  ]
 }

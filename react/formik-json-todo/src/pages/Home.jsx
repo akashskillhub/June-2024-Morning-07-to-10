@@ -1,23 +1,29 @@
-import React from 'react'
+import { useState } from "react"
+import TodoForm from "../components/TodoForm"
+import TodoTable from "../components/TodoTable"
 
 const Home = () => {
+    const [success, setSuccess] = useState(false)
+    const toggle = () => { setSuccess(!success) }
     return <>
-        <TodoForm />
+        <div className="container">
+            <div className="row">
+                <div className="col-sm-6 offset-sm-3">
+                    <div className="card">
+                        <div className="card-header">Note App</div>
+                        <div className="card-body">
+                            <TodoForm toggleFn={toggle} success={success} />
+                        </div>
+                    </div>
+                    <TodoTable success={success} toggleFn={toggle} />
+                </div>
+            </div>
+        </div>
     </>
 }
 
-const TodoForm = () => {
-    return <form>
-        <input type="text" />
-        <input type="text" />
-        <select >
-            <option selected disabled>Choose Priority</option>
-            <option value="1">High</option>
-            <option value="2">Meduim</option>
-            <option value="3">Low</option>
-        </select>
-        <button type='submit'>Add Todo</button>
-    </form>
-}
+
+
+
 
 export default Home
