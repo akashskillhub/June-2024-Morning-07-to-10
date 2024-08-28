@@ -1,46 +1,75 @@
 import { useFormik } from 'formik'
 import * as yup from 'yup'
+import clsx from 'clsx'
 import api from '../util/api'
 
-const BlogForm = () => {
+const BlogForm = ({ success, setSuccess, selectedBlog }) => {
+
     const formik = useFormik({
+        enableReinitialize: true,
         initialValues: {
-            title: "",
-            desc: "",
-            hero: "",
+            title: selectedBlog ? selectedBlog.title : "",
+            hero: selectedBlog ? selectedBlog.hero : "",
+            desc: selectedBlog ? selectedBlog.desc : '',
         },
         validationSchema: yup.object({
             title: yup.string().required("Enter Title"),
-            desc: yup.string().required("Enter Desc"),
-            hero: yup.string().required("Enter Hero"),
+            hero: yup.string().required("Enter Hero Image URL"),
+            desc: yup.string().required("Enter Description"),
         }),
         onSubmit: async (values, { resetForm }) => {
-            await api.post("/articles", values)
-            console.log("Blog Create Success")
-            resetForm()
+            try {
+                if (selectedBlog) {
+                    await api.patch("/articles/" + selectedBlog.id, values)
+                    console.log("Blog Update Success")
+                } else {
+                    await api.post("/articles", values)
+                    console.log("Blog Create Success")
+                }
+
+                setSuccess(!success)
+                resetForm()
+            } catch (error) {
+                console.log(error)
+            }
         }
     })
+
+    const handleClasses = arg => clsx({
+        "is-invalid": formik.touched[arg] && formik.errors[arg],
+        "form-control my-2": true
+    })
+
+
+
     return <>
         <form onSubmit={formik.handleSubmit}>
             <div>
                 <input
-                    className={`form-control my-2 ${formik.touched.title && formik.errors.title && "is-invalid"}`}
-                    type="text" {...formik.getFieldProps("title")} />
+                    className={handleClasses("title")}
+                    type="text"
+                    {...formik.getFieldProps("title")} />
                 <span className='invalid-feedback'>{formik.errors.title}</span>
             </div>
             <div>
                 <input
-                    className={`form-control my-2 ${formik.touched.hero && formik.errors.hero && "is-invalid"}`}
-                    type="text" {...formik.getFieldProps("hero")} />
+                    className={handleClasses("hero")}
+                    type="text"
+                    {...formik.getFieldProps("hero")} />
                 <span className='invalid-feedback'>{formik.errors.hero}</span>
             </div>
             <div>
                 <textarea
-                    className={`form-control my-2 ${formik.touched.desc && formik.errors.desc && "is-invalid"}`}
-                    {...formik.getFieldProps("desc")}></textarea>
+                    className={handleClasses("desc")}
+                    {...formik.getFieldProps("desc")} ></textarea>
                 <span className='invalid-feedback'>{formik.errors.desc}</span>
             </div>
-            <button className='btn btn-lg btn-dark w-100 mt-3' type='submit'>Add Blog</button>
+            {
+                selectedBlog
+                    ? <button data-bs-dismiss="modal" className='btn btn-warning w-100 btn-lg' type='submit'>Update Blog</button>
+                    : <button className='btn btn-dark w-100 btn-lg' type='submit'>Add Blog</button>
+            }
+
         </form>
     </>
 }
