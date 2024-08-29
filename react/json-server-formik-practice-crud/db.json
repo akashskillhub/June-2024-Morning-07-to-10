@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "name": "qweqeqweqweqwweq",
+      "desc": "sdfsdf",
+      "price": "fdgsdf",
+      "category": "electronics",
+      "isAvailable": "no",
+      "id": 1
+    },
+    {
+      "name": "nmbnm",
+      "desc": "nm,nm",
+      "price": "5656",
+      "category": "electronics",
+      "isAvailable": "yes",
+      "id": 2
+    },
+    {
+      "name": "sadsdf",
+      "desc": "dfgdf",
+      "price": "67876",
+      "category": "appliences",
+      "isAvailable": "no",
+      "id": 3
+    }
+  ]
+}
