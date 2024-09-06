@@ -1,0 +1,3 @@
+export const DEPOSIT_MONEY = "DEPOSIT_MONEY"
+export const WIDRAW_MONEY = "WIDRAW_MONEY"
+export const WIDRAW_ALL_MONEY = "WIDRAW_ALL_MONEY"
