@@ -1,0 +1,20 @@
+{
+  "students": [
+    {
+      "name": "ross",
+      "email": "ross@gmail.com",
+      "password": "asdasd",
+      "education": "BCS",
+      "address": "london",
+      "id": 1
+    },
+    {
+      "name": "john",
+      "email": "john@gmail.com",
+      "password": "aaaaaa",
+      "education": "BTech",
+      "address": "pune",
+      "id": 2
+    }
+  ]
+}
