@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "name": "akash",
+      "email": "akash@gmail.com",
+      "password": "123",
+      "cpassword": "123",
+      "id": 1
+    },
+    {
+      "name": "kate",
+      "email": "admin@gmail.com",
+      "password": "123",
+      "cpassword": "123",
+      "id": 2
+    },
+    {
+      "name": "sdfasd",
+      "email": "asdasd@asdfasd",
+      "password": "asdasd",
+      "cpassword": "asdasd",
+      "id": 3
+    },
+    {
+      "name": "aaa",
+      "email": "aa@wdads",
+      "password": "asda",
+      "cpassword": "asdasd",
+      "id": 4
+    }
+  ]
+}

@@ -5,9 +5,12 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import PublicNavbar from './components/PublicNavbar'
 import LearnLocalStorage from './pages/LearnLocalStorage'
+import "react-toastify/ReactToastify.min.css"
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
   return <>
+    <ToastContainer />
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<> <PublicNavbar /> <Outlet /> </>}>
