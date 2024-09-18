@@ -5,11 +5,11 @@ const authSlice = createSlice({
     name: "authSlice",
     initialState: {},
     reducers: {
-        invalidate: (state, { payload }) => {
-            payload.forEach(item => {
-                state[item] = false
-            })
-        }
+        //👇 This is action used to change redux value
+        logout: (state, { payload }) => {
+            state.loggedInUser = null
+        },
+
     },
     extraReducers: builder => builder
         .addCase(registerUser.pending, (state, { payload }) => {
@@ -39,5 +39,5 @@ const authSlice = createSlice({
 
 })
 
-export const { invalidate } = authSlice.actions
+export const { logout } = authSlice.actions
 export default authSlice.reducer
