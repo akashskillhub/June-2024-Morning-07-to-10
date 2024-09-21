@@ -5,7 +5,7 @@ export const loginUser = createAsyncThunk(
     "loginUser",
     async (userData, { rejectWithValue, getState }) => {
         try {
-            const { data } = await api.get("/user", { params: userData })
+            const { data } = await api.get("/users", { params: userData })
             if (data.length === 0) {
                 return rejectWithValue("Invalid Email Or Password")
             } else {

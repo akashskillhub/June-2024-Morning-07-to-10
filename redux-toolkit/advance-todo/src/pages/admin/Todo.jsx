@@ -1,17 +1,23 @@
 import clsx from 'clsx'
 import { useFormik } from 'formik'
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import * as yup from 'yup'
+import { addTodo, getEmployee, getTodos, updateTodo } from '../../redux/adminActions'
 
 const Todo = () => {
+    const dispatch = useDispatch()
+    const { employees, todos, loading, error, todoCreate, todoUpdate, todoDelete } = useSelector(state => state.admin)
     const [selectedTodo, setSelectedTodo] = useState()
+
+
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            task: selectedTodo ? selectedTodo.name : "",
-            desc: selectedTodo ? selectedTodo.email : "",
-            priority: selectedTodo ? selectedTodo.mobile : "",
-            employee: selectedTodo ? selectedTodo.depart : "",
+            task: selectedTodo ? selectedTodo.task : "",
+            desc: selectedTodo ? selectedTodo.desc : "",
+            priority: selectedTodo ? selectedTodo.priority : "",
+            employee: selectedTodo ? selectedTodo.employee : "",
         },
         validationSchema: yup.object({
             task: yup.string().required("Enter task"),
@@ -20,7 +26,12 @@ const Todo = () => {
             employee: yup.string().required("Enter employee"),
         }),
         onSubmit: (values, { resetForm }) => {
-
+            if (selectedTodo) {
+                dispatch(updateTodo({ ...selectedTodo, ...values }))
+                setSelectedTodo(null)
+            } else {
+                dispatch(addTodo(values))
+            }
             resetForm()
         }
     })
@@ -31,6 +42,13 @@ const Todo = () => {
         "is-valid": formik.touched[arg] && !formik.errors[arg],
     })
 
+    useEffect(() => {
+        dispatch(getEmployee())
+    }, [])
+
+    useEffect(() => {
+        dispatch(getTodos())
+    }, [todoCreate, todoUpdate, todoDelete])
 
     return <>
         <div className="container mt-5">
@@ -42,11 +60,11 @@ const Todo = () => {
                             <form onSubmit={formik.handleSubmit}>
                                 <div>
                                     <input className={handleClasses("task")} {...formik.getFieldProps("task")} type="text" placeholder='Enter Name' />
-                                    <span className="invalid-feedback">{formik.errors.name}</span>
+                                    <span className="invalid-feedback">{formik.errors.task}</span>
                                 </div>
                                 <div>
-                                    <input className={handleClasses("desc")} {...formik.getFieldProps("desc")} type="email" placeholder='Enter Email' />
-                                    <span className="invalid-feedback">{formik.errors.email}</span>
+                                    <input className={handleClasses("desc")} {...formik.getFieldProps("desc")} type="text" placeholder='Enter Email' />
+                                    <span className="invalid-feedback">{formik.errors.desc}</span>
                                 </div>
                                 <div>
                                     <select className={handleClasses("priority")} {...formik.getFieldProps("priority")}>
@@ -55,14 +73,19 @@ const Todo = () => {
                                         <option value="Medium">Medium</option>
                                         <option value="low">Low</option>
                                     </select>
-                                    <span className="invalid-feedback">{formik.errors.depart}</span>
+                                    <span className="invalid-feedback">{formik.errors.priority}</span>
                                 </div>
                                 <div>
                                     <select className={handleClasses("employee")} {...formik.getFieldProps("employee")}>
                                         <option value="">Choose Employee</option>
+                                        {
+                                            employees && employees.map(item => <option key={item.id} value={item.id}>
+                                                {item.name}
+                                            </option>)
+                                        }
 
                                     </select>
-                                    <span className="invalid-feedback">{formik.errors.depart}</span>
+                                    <span className="invalid-feedback">{formik.errors.employee}</span>
                                 </div>
                                 {
                                     selectedTodo
@@ -74,7 +97,7 @@ const Todo = () => {
                             </form>
                         </div>
                     </div>
-                    {/* <table class="table table-dark table-striped table-hover mt-5">
+                    <table class="table table-dark table-striped table-hover mt-5">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -104,7 +127,7 @@ const Todo = () => {
                                 </tr>)
                             }
                         </tbody>
-                    </table> */}
+                    </table>
 
                 </div>
             </div>

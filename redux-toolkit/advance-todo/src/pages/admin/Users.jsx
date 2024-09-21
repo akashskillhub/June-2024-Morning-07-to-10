@@ -1,18 +1,27 @@
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { handleClasses } from '../../utils/handleClasses'
-// import { handleClasses } from '../utils/handleClasses'
+import { useDispatch, useSelector } from 'react-redux'
+import { addEmployee, deleteEmployee, getEmployee, updateEmployee } from '../../redux/adminActions'
+import { useEffect, useState } from 'react'
 
 const Users = () => {
-
-
-
+    const [selectedEmployee, setSelectedEmployee] = useState()
+    const dispatch = useDispatch()
+    const {
+        loading,
+        error,
+        employeeCreate,
+        employeeUpdate,
+        employeeDelete,
+        employees } = useSelector(state => state.admin)
     const formik = useFormik({
+        enableReinitialize: true,
         initialValues: {
-            name: "",
-            email: "",
-            password: "",
-            cpassword: "",
+            name: selectedEmployee ? selectedEmployee.name : "",
+            email: selectedEmployee ? selectedEmployee.email : "",
+            password: selectedEmployee ? selectedEmployee.password : "",
+            cpassword: selectedEmployee ? selectedEmployee.cpassword : "",
         },
         validationSchema: yup.object({
             name: yup.string().required("Enter Name"),
@@ -21,11 +30,19 @@ const Users = () => {
             password: yup.string().required("Enter password"),
         }),
         onSubmit: (values, { resetForm }) => {
+            if (selectedEmployee) {
+                dispatch(updateEmployee({ ...selectedEmployee, ...values }))
+                setSelectedEmployee(null)
+            } else {
+                dispatch(addEmployee(values))
+            }
             resetForm()
         }
     })
 
-
+    useEffect(() => {
+        dispatch(getEmployee())
+    }, [employeeDelete, employeeCreate, employeeUpdate])
     return <>
         <div className="container">
             <div className="row">
@@ -85,18 +102,52 @@ const Users = () => {
                                     <div className="valid-feedback">Looks good!</div>
                                     <div className="invalid-feedback">{formik.errors.cpassword}</div>
                                 </div>
-                                <button type="submit" className="btn btn-primary w-100 mt-3">
-                                    Signup
-                                </button>
+                                {
+                                    selectedEmployee
+                                        ? <button type="submit" className="btn btn-warning w-100 mt-3">
+                                            Update Employee
+                                        </button>
+                                        : <button type="submit" className="btn btn-primary w-100 mt-3">
+                                            Create Employee
+                                        </button>
+                                }
+
                                 <p className="text-center mt-3">
                                     Already Have Account? <a href="#">Login</a>
                                 </p>
                             </div>
                         </form>
                     </div>
+
+                    <table class="table table-dark table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                employees && employees.map(item => <tr key={item.id}>
+                                    <td>{item.id}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.password}</td>
+                                    <td>
+                                        <button onClick={e => setSelectedEmployee(item)} className='btn btn-sm btn-outline-warning'>Edit</button>
+                                        <button onClick={e => dispatch(deleteEmployee(item.id))} className='btn btn-sm btn-outline-danger'>Delete</button>
+                                    </td>
+                                </tr>)
+                            }
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
-        </div>
+        </div >
     </>
 }
 

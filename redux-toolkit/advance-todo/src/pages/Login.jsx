@@ -1,9 +1,15 @@
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { handleClasses } from '../utils/handleClasses'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser } from '../redux/authActions'
+import { useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 
 const Login = () => {
+    const dispatch = useDispatch()
+    const { loggedInUser, error } = useSelector(state => state.auth)
 
     const formik = useFormik({
         initialValues: {
@@ -15,10 +21,22 @@ const Login = () => {
             password: yup.string().required("Enter Password"),
         }),
         onSubmit: (values, { resetForm }) => {
+            dispatch(loginUser(values))
             resetForm()
         }
     })
 
+    useEffect(() => {
+        if (loggedInUser) {
+            toast.success("Employee Login Success")
+        }
+    }, [loggedInUser])
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error)
+        }
+    }, [error])
 
     return <>
         <div className="container">

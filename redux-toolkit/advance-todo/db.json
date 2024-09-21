@@ -1,5 +1,27 @@
 {
-  "users": [],
+  "users": [
+    {
+      "name": "katesdfgdfgdf",
+      "email": "etry@wsdf",
+      "password": "sdfs",
+      "cpassword": "sdfsd",
+      "id": 3
+    },
+    {
+      "name": "akash",
+      "email": "akash@gmail.com",
+      "password": "123",
+      "cpassword": "123",
+      "id": 4
+    },
+    {
+      "name": "john",
+      "email": "john@gmail.com",
+      "password": "123",
+      "cpassword": "123",
+      "id": 5
+    }
+  ],
   "admin": [
     {
       "id": 1,
@@ -7,6 +29,22 @@
       "password": "123",
       "name": "admin",
       "role": "admin"
+    }
+  ],
+  "todos": [
+    {
+      "task": "build auth",
+      "desc": "asdasd",
+      "priority": "High",
+      "employee": "5",
+      "id": 1
+    },
+    {
+      "task": "built FAQ page",
+      "desc": "asdas ad ad ",
+      "priority": "Medium",
+      "employee": "4",
+      "id": 2
     }
   ]
 }
