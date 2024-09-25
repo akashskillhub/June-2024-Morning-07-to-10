@@ -11,6 +11,9 @@ import AdminLogin from './pages/AdminLogin'
 import Protected from './share/Protected'
 import Users from './pages/admin/Users'
 import Todo from './pages/admin/Todo'
+import EmployeeLayout from './components/EmployeeLayout'
+import Account from './pages/employee/Account'
+import EmployeeProtected from './share/EmployeeProtected'
 
 const App = () => {
   return <>
@@ -27,6 +30,10 @@ const App = () => {
           <Route index element={<Dashboard />} />
           <Route path='users' element={<Users />} />
           <Route path='todos' element={<Todo />} />
+        </Route>
+
+        <Route path='/employee' element={<EmployeeProtected compo={<EmployeeLayout />} />}>
+          <Route index element={<Account />} />
         </Route>
 
         <Route path='*' element={<h1>Page Not Found</h1>} />

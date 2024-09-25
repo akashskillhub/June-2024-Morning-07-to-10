@@ -1,0 +1,21 @@
+{
+  "admin": [
+    {
+      "id": 1,
+      "mobile": "9284123374",
+      "name": "admin",
+      "password": "123"
+    }
+  ],
+  "patients": [
+    {
+      "name": "akash",
+      "email": "akash@gmail.com",
+      "gender": "male",
+      "mobile": 8888888888,
+      "password": "123",
+      "id": 1
+    }
+  ],
+  "bookings": []
+}

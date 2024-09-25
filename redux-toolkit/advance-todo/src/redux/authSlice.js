@@ -3,11 +3,19 @@ import { loginAdmin, loginUser } from "./authActions";
 
 const authSlice = createSlice({
     name: "authSlice",
-    initialState: { loggedInAdmin: JSON.parse(localStorage.getItem("admin")) },
+    initialState: {
+        loggedInUser: JSON.parse(localStorage.getItem("employee")),
+        loggedInAdmin: JSON.parse(localStorage.getItem("admin"))
+    },
     reducers: {
         logout: (state, { payload }) => {
-            localStorage.removeItem("admin")
-            state.loggedInAdmin = null
+            if (payload === "employee") {
+                localStorage.removeItem("employee")
+                state.loggedInUser = null
+            } else {
+                localStorage.removeItem("admin")
+                state.loggedInAdmin = null
+            }
         }
     },
     extraReducers: builder => builder

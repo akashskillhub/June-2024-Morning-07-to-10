@@ -9,6 +9,7 @@ export const loginUser = createAsyncThunk(
             if (data.length === 0) {
                 return rejectWithValue("Invalid Email Or Password")
             } else {
+                localStorage.setItem("employee", JSON.stringify(data[0]))
                 return data[0]
             }
         } catch (error) {

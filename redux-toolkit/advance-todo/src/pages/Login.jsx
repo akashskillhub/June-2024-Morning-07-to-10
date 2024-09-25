@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../redux/authActions'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 
 const Login = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { loggedInUser, error } = useSelector(state => state.auth)
 
     const formik = useFormik({
@@ -29,6 +31,7 @@ const Login = () => {
     useEffect(() => {
         if (loggedInUser) {
             toast.success("Employee Login Success")
+            navigate("/employee")
         }
     }, [loggedInUser])
 

@@ -105,6 +105,7 @@ const Todo = () => {
                                 <th>desc</th>
                                 <th>priority</th>
                                 <th>employee</th>
+                                <th>complete</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -116,13 +117,23 @@ const Todo = () => {
                                     <td>{item.desc}</td>
                                     <td>{item.priority}</td>
                                     <td>{item.employee}</td>
-                                    <td>
-                                        <button
-                                            onClick={e => setSelectedTodo(item)}
-                                            className='mx-2 btn btn-sm btn-outline-warning'>Edit</button>
-                                        <button
+                                    <td>{
+                                        item.complete
+                                            ? <span class="badge text-bg-success">Comeplete</span>
+                                            : <span class="badge text-bg-secondary">Pending</span>
 
-                                            className='mx-2 btn btn-sm btn-outline-danger'>Delete</button>
+                                    }</td>
+                                    <td>
+
+                                        {
+                                            !item.complete && <>
+                                                <button
+                                                    onClick={e => setSelectedTodo(item)}
+                                                    className='mx-2 btn btn-sm btn-outline-warning'>Edit</button>
+                                                <button className='mx-2 btn btn-sm btn-outline-danger'>Delete</button>
+                                            </>
+                                        }
+
                                     </td>
                                 </tr>)
                             }
@@ -131,7 +142,7 @@ const Todo = () => {
 
                 </div>
             </div>
-        </div>
+        </div >
     </>
 }
 
