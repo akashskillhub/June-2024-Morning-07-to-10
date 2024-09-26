@@ -15,7 +15,31 @@
       "mobile": 8888888888,
       "password": "123",
       "id": 1
+    },
+    {
+      "name": "ross",
+      "email": "ross@gmail.com",
+      "gender": "male",
+      "mobile": 2233665544,
+      "password": "123",
+      "id": 2
     }
   ],
-  "bookings": []
+  "bookings": [
+    {
+      "date": "2024-09-27",
+      "time": "10:00",
+      "desc": "test",
+      "patient": 1,
+      "patientDetails": {
+        "name": "akash",
+        "email": "akash@gmail.com",
+        "gender": "male",
+        "mobile": 8888888888,
+        "password": "123",
+        "id": 1
+      },
+      "id": 2
+    }
+  ]
 }
