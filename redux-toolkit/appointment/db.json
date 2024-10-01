@@ -27,7 +27,7 @@
   ],
   "bookings": [
     {
-      "date": "2024-09-27",
+      "date": "2024-09-20",
       "time": "10:00",
       "desc": "test",
       "patient": 1,
@@ -40,6 +40,68 @@
         "id": 1
       },
       "id": 2
+    },
+    {
+      "date": "2024-09-25",
+      "time": "16:30",
+      "desc": "fever",
+      "patient": 1,
+      "patientDetails": {
+        "name": "akash",
+        "email": "akash@gmail.com",
+        "gender": "male",
+        "mobile": 8888888888,
+        "password": "123",
+        "id": 1
+      },
+      "id": 3
+    },
+    {
+      "date": "2024-09-26",
+      "time": "10:35",
+      "desc": "test",
+      "patient": 1,
+      "patientDetails": {
+        "name": "akash",
+        "email": "akash@gmail.com",
+        "gender": "male",
+        "mobile": 8888888888,
+        "password": "123",
+        "id": 1
+      },
+      "id": 4
+    },
+    {
+      "date": "2024-09-27",
+      "time": "10:35",
+      "desc": "test",
+      "patient": 1,
+      "patientDetails": {
+        "name": "akash",
+        "email": "akash@gmail.com",
+        "gender": "male",
+        "mobile": 8888888888,
+        "password": "123",
+        "id": 1
+      },
+      "id": 5,
+      "cancel": true
+    },
+    {
+      "date": "2024-09-28",
+      "time": "10:35",
+      "desc": "test",
+      "patient": 1,
+      "patientDetails": {
+        "name": "akash",
+        "email": "akash@gmail.com",
+        "gender": "male",
+        "mobile": 8888888888,
+        "password": "123",
+        "id": 1
+      },
+      "id": 6,
+      "cancel": true
     }
   ]
 }

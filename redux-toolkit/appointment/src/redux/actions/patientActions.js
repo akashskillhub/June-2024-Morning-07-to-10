@@ -23,3 +23,13 @@ export const getBookingHistory = createAsyncThunk(
             return rejectWithValue(error.message || "something went wrong")
         }
     })
+export const cancelBooking = createAsyncThunk(
+    "cancelBooking",
+    async (bookingData, { rejectWithValue, getState }) => {
+        try {
+            const { data } = await api.put("/bookings/" + bookingData.id, { ...bookingData, cancel: true })
+            return data
+        } catch (error) {
+            return rejectWithValue(error.message || "something went wrong")
+        }
+    })
