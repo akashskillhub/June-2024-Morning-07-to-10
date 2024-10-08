@@ -2,7 +2,7 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { handleClasses } from '../../utils/handleClasses'
 
-const Login = () => {
+const AdminLogin = () => {
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -17,16 +17,15 @@ const Login = () => {
         }
     })
     return <>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 offset-sm-3">
-                    <div class="card">
-                        <div class="card-header">Login</div>
+        <div className="container">
+            <div className="row">
+                <div className="col-sm-6 offset-sm-3">
+                    <div className="card">
+                        <div className="card-header bg-primary text-light">Admin Login</div>
                         <form onSubmit={formik.handleSubmit}>
-                            <div class="card-body">
-
-                                <div class="mt-2">
-                                    <label for="email" class="form-label">First Email</label>
+                            <div className="card-body">
+                                <div className="mt-2">
+                                    <label for="email" className="form-label">First Email</label>
                                     <input
                                         type="email"
                                         {...formik.getFieldProps("email")}
@@ -34,11 +33,11 @@ const Login = () => {
                                         id="email"
                                         placeholder="Enter Your Email"
                                     />
-                                    <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">{formik.errors.email}</div>
+                                    <div className="valid-feedback">Looks good!</div>
+                                    <div className="invalid-feedback">{formik.errors.email}</div>
                                 </div>
-                                <div class="mt-2">
-                                    <label for="password" class="form-label">Password</label>
+                                <div className="mt-2">
+                                    <label for="password" className="form-label">Password</label>
                                     <input
                                         type="password"
                                         {...formik.getFieldProps("password")}
@@ -46,16 +45,13 @@ const Login = () => {
                                         id="password"
                                         placeholder="Enter Your Password"
                                     />
-                                    <div class="valid-feedback">Looks good!</div>
-                                    <div class="invalid-feedback">{formik.errors.password}</div>
+                                    <div className="valid-feedback">Looks good!</div>
+                                    <div className="invalid-feedback">{formik.errors.password}</div>
                                 </div>
-
-                                <button type="submit" class="btn btn-primary w-100 mt-3">
+                                <button type="submit" className="btn btn-primary w-100 mt-3">
                                     Signup
                                 </button>
-                                <p class="text-center mt-3">
-                                    Already Have Account? <a href="#">Login</a>
-                                </p>
+
                             </div>
                         </form>
                     </div>
@@ -65,4 +61,4 @@ const Login = () => {
     </>
 }
 
-export default Login
+export default AdminLogin
