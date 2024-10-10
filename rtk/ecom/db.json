@@ -1,19 +1,59 @@
 {
-  "posts": [
+  "products": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "name": "yyy",
+      "price": 500,
+      "stock": 10,
+      "hero": "https://images.unsplash.com/photo-1682695795557-17447f921f79?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "desc": "sdfsdf",
+      "category": "electrinics",
+      "isAvailable": true,
+      "id": 1
+    },
+    {
+      "name": "uii",
+      "price": 1999,
+      "stock": 200,
+      "hero": "https://images.unsplash.com/photo-1682687982183-c2937a74257c?auto=format&fit=crop&q=80&w=1471&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "desc": "ghfhgfg",
+      "category": "grocery",
+      "isAvailable": true,
+      "id": 3
+    },
+    {
+      "name": "vbcvb",
+      "price": 44,
+      "stock": 33,
+      "hero": "https://images.unsplash.com/photo-1682687982183-c2937a74257c?auto=format&fit=crop&q=80&w=1471&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "desc": "sfdsdf",
+      "category": "clothing",
+      "isAvailable": false,
+      "id": 4
     }
   ],
-  "comments": [
+  "admin": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "123"
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "customers": [
+    {
+      "name": "akash",
+      "email": "akash@gmail.com",
+      "password": "123",
+      "cpassword": "123",
+      "id": 1
+    },
+    {
+      "name": "john",
+      "email": "john@gmail.com",
+      "password": "123",
+      "cpassword": "123",
+      "id": 2
+    }
+  ],
+  "orders": []
 }

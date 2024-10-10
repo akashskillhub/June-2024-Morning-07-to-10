@@ -2,8 +2,14 @@ import clsx from 'clsx'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { handleClasses } from '../../utils/handleClasses'
+import { useRegisterCustomerMutation } from '../../redux/apis/authApi'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 const Register = () => {
+    const [registerCustomer, { isError, error, isLoading, isSuccess }] = useRegisterCustomerMutation()
+    const navigate = useNavigate()
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -18,10 +24,26 @@ const Register = () => {
             cpassword: yup.string().required("Enter cpassword"),
         }),
         onSubmit: (values, { resetForm }) => {
+            registerCustomer(values)
             resetForm()
         }
     })
-
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success("Register Success")
+            navigate("/login")
+        }
+    }, [isSuccess])
+    useEffect(() => {
+        if (isError) {
+            toast.error(JSON.stringify(error))
+        }
+    }, [isError])
+    if (isLoading) {
+        return <div>
+            Please Wait... <div class="spinner-border text-primary"></div>
+        </div>
+    }
     return <>
         <div class="container">
             <div class="row">

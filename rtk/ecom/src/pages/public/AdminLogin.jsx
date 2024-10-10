@@ -1,8 +1,14 @@
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { handleClasses } from '../../utils/handleClasses'
+import { useLazyLoginAdminQuery, useLoginAdminQuery } from '../../redux/apis/authApi'
+import { useEffect } from 'react'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const AdminLogin = () => {
+    const navigate = useNavigate()
+    const [loginAdmin, { isSuccess, isError, isLoading, error }] = useLazyLoginAdminQuery()
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -13,9 +19,26 @@ const AdminLogin = () => {
             password: yup.string().required("Enter password"),
         }),
         onSubmit: (values, { resetForm }) => {
+            loginAdmin(values)
             resetForm()
         }
     })
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success("Login Success")
+            navigate("/admin")
+        }
+    }, [isSuccess])
+    useEffect(() => {
+        if (isError) {
+            toast.error(error.message)
+        }
+    }, [isError])
+    if (isLoading) {
+        return <div>
+            please wait ... <div class="spinner-border text-primary"></div>
+        </div>
+    }
     return <>
         <div className="container">
             <div className="row">

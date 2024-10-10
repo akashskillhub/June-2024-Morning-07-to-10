@@ -13,6 +13,14 @@ export const authApi = createApi({
                         params: userData
                     }
                 },
+                transformResponse: data => {
+                    if (data.length > 0) {
+                        localStorage.setItem("admin", JSON.stringify(data[0]))
+                        return data[0]
+                    } else {
+                        throw new Error("Invalid Credentials")
+                    }
+                }
             }),
             loginCustomer: builder.query({
                 query: (userData) => {
@@ -22,6 +30,14 @@ export const authApi = createApi({
                         params: userData
                     }
                 },
+                transformResponse: data => {
+                    if (data.length > 0) {
+                        localStorage.setItem("customer", JSON.stringify(data[0]))
+                        return data[0]
+                    } else {
+                        throw new Error("Invalid Credentials")
+                    }
+                }
             }),
             registerCustomer: builder.mutation({
                 query: userData => {
@@ -32,7 +48,6 @@ export const authApi = createApi({
                     }
                 },
             }),
-
         }
     }
 })
@@ -40,5 +55,7 @@ export const authApi = createApi({
 export const {
     useLoginAdminQuery,
     useLoginCustomerQuery,
-    useRegisterCustomerMutation
+    useLazyLoginCustomerQuery,
+    useRegisterCustomerMutation,
+    useLazyLoginAdminQuery
 } = authApi

@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { handleClasses } from '../../utils/handleClasses'
+import { useAddProductMutation, useDeleteProductMutation, useGetAllProductsQuery, useUpdateProductMutation } from '../../redux/apis/adminApi'
+import { toast } from 'react-toastify'
 const AdminProducts = () => {
+    const { data } = useGetAllProductsQuery()
+    const [addProduct, { isSuccess: addProductSuccess, isError: isErroraddProduct }] = useAddProductMutation()
+    const [udpateProduct, { isSuccess: udpateProductSuccess, isError: isErrorudpateProduct }] = useUpdateProductMutation()
+    const [deleteProduct, { isSuccess: deleteProductSuccess, isError: isErrordeleteProduct }] = useDeleteProductMutation()
+
     const [selectedProduct, setSelectedProduct] = useState()
     const formik = useFormik({
         enableReinitialize: true,
@@ -25,9 +32,47 @@ const AdminProducts = () => {
             isAvailable: yup.string().required("Enter isAvailable"),
         }),
         onSubmit: (values, { resetForm }) => {
+            if (selectedProduct) {
+                udpateProduct({ ...selectedProduct, ...values })
+                setSelectedProduct(null)
+            } else {
+                addProduct(values)
+            }
             resetForm()
         }
     })
+    useEffect(() => {
+        if (addProductSuccess) {
+            toast.success("addProduct Success")
+        }
+    }, [addProductSuccess])
+    useEffect(() => {
+        if (udpateProductSuccess) {
+            toast.success("udpateProduct Success")
+        }
+    }, [udpateProductSuccess])
+    useEffect(() => {
+        if (deleteProductSuccess) {
+            toast.success("deleteProduct Success")
+        }
+    }, [deleteProductSuccess])
+
+
+    useEffect(() => {
+        if (isErroraddProduct) {
+            toast.error("unable to addProduct")
+        }
+    }, [isErroraddProduct])
+    useEffect(() => {
+        if (isErrorudpateProduct) {
+            toast.error("unable to udpateProduct")
+        }
+    }, [isErrorudpateProduct])
+    useEffect(() => {
+        if (isErrordeleteProduct) {
+            toast.error("unable to deleteProduct")
+        }
+    }, [isErrordeleteProduct])
     return <>
         <div className="container">
             <div className="row">
@@ -150,6 +195,52 @@ const AdminProducts = () => {
                             </div>
                         </form>
                     </div>
+                    {
+                        data && <table class="table table-dark table-striped table-hover mt-2">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>name</th>
+                                    <th>price</th>
+                                    <th>stock</th>
+                                    <th>hero</th>
+                                    <th>desc</th>
+                                    <th>category</th>
+                                    <th>isAvailable</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    data.map(item => <tr key={item.id}>
+                                        <td>{item.id}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.price}</td>
+                                        <td>{item.stock}</td>
+                                        <td> <img src={item.hero} height={50} alt="" /></td>
+                                        <td>{item.desc}</td>
+                                        <td>{item.category}</td>
+                                        <td>{item.isAvailable ? "Yes" : "No"}</td>
+                                        <td>
+                                            <button
+                                                onClick={e => setSelectedProduct(item)}
+                                                type="button"
+                                                class="btn btn-sm btn-outline-warning me-2">
+                                                <i className="bi bi-pencil"></i>
+                                            </button>
+                                            <button
+                                                onClick={e => deleteProduct(item.id)}
+                                                type="button"
+                                                class="btn btn-sm btn-outline-danger me-2">
+                                                <i className="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>)
+                                }
+                            </tbody>
+                        </table>
+                    }
+
                 </div>
             </div>
         </div>

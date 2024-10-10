@@ -10,10 +10,14 @@ import { adminRoutes } from './routes/adminRoute'
 import { customerRoutes } from './routes/customerRoute'
 import CustomerNavbar from './components/customer/CustomerNavbar'
 import CustomerLayout from './components/customer/CustomerLayout'
-
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/ReactToastify.min.css"
+import AdminProtected from './components/admin/AdminProtected'
+import CustomerProtected from './components/customer/CustomerProtected'
 
 const App = () => {
   return <>
+    <ToastContainer />
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<PublicLayout />}>
@@ -29,7 +33,7 @@ const App = () => {
             />)
           }
         </Route>
-        <Route path='/admin' element={<AdminLayout />}>
+        <Route path='/admin' element={<AdminProtected compo={<AdminLayout />} />}>
           {
             adminRoutes.map(item => <Route
               key={item.label}
@@ -42,7 +46,7 @@ const App = () => {
             />)
           }
         </Route>
-        <Route path='/customer' element={<CustomerLayout />}>
+        <Route path='/customer' element={<CustomerProtected compo={<CustomerLayout />} />}>
           {
             customerRoutes.map(item => <Route
               key={item.label}
