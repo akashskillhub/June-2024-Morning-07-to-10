@@ -14,10 +14,20 @@ export const publicApi = createApi({
                     }
                 },
             }),
+            getPublicProductDetails: builder.query({
+                query: (pid) => {
+                    return {
+                        url: "/products",
+                        method: "GET",
+                        params: { id: pid }
+                    }
+                },
+                transformResponse: data => data[0]
+            }),
 
 
         }
     }
 })
 
-export const { useGetPublicProductsQuery } = publicApi
+export const { useGetPublicProductsQuery, useGetPublicProductDetailsQuery } = publicApi

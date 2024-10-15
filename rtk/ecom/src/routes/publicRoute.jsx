@@ -12,7 +12,7 @@ export const publicRoutes = [
     { showWhileLogin: true, showNavbar: true, path: "/", label: "home", element: <Home /> },
     { showWhileLogin: false, showNavbar: true, path: "/login", label: "login", element: <Login /> },
     { showWhileLogin: false, showNavbar: true, path: "/register", label: "register", element: <Register /> },
-    { showWhileLogin: false, showNavbar: false, path: "/details", label: "details", element: <Details /> },
+    { showWhileLogin: false, showNavbar: false, path: "/details/:pid", label: "details", element: <Details /> },
     { showWhileLogin: false, showNavbar: false, path: "/cart", label: "cart", element: <Cart /> },
     { showWhileLogin: false, showNavbar: false, path: "/checkout", label: "checkout", element: <Checkout /> },
     { showWhileLogin: false, showNavbar: false, path: "/success", label: "success", element: <Success /> },

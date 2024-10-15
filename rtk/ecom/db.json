@@ -27,8 +27,18 @@
       "hero": "https://images.unsplash.com/photo-1682687982183-c2937a74257c?auto=format&fit=crop&q=80&w=1471&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "desc": "sfdsdf",
       "category": "clothing",
-      "isAvailable": false,
+      "isAvailable": true,
       "id": 4
+    },
+    {
+      "name": "jklkjl",
+      "price": 88,
+      "stock": 789,
+      "hero": "https://images.unsplash.com/photo-1683009426501-028aabdd7b8a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "desc": "ghjghj",
+      "category": "electrinics",
+      "isAvailable": false,
+      "id": 5
     }
   ],
   "admin": [

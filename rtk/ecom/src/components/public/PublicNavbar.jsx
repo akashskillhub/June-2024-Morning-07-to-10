@@ -6,6 +6,7 @@ import { logoutCustomer } from '../../redux/slices/authSlice'
 
 const PublicNavbar = () => {
     const { customer } = useSelector(state => state.auth)
+    const { cart } = useSelector(state => state.publicCart)
     const dispatch = useDispatch()
     return <>
         <nav className="navbar navbar-expand-lg bg-primary navbar-dark">
@@ -28,15 +29,20 @@ const PublicNavbar = () => {
                         }
                     </div>
                     {
-                        customer && <div class="dropdown ms-auto">
-                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" >
-                                {customer.name}
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><Link to="/customer" class="dropdown-item">Account</Link></li>
-                                <li><Link to="/customer/profile" class="dropdown-item">Profile</Link></li>
-                                <li><button onClick={e => dispatch(logoutCustomer())} class="dropdown-item text-danger">Logout</button></li>
-                            </ul>
+                        customer && <div className='ms-auto d-flex gap-2'>
+                            <Link to="/cart" type="button" class="btn btn-outline-light">
+                                <i className="bi bi-cart"></i> {cart.length}
+                            </Link>
+                            <div class="dropdown ">
+                                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" >
+                                    {customer.name}
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><Link to="/customer" class="dropdown-item">Account</Link></li>
+                                    <li><Link to="/customer/profile" class="dropdown-item">Profile</Link></li>
+                                    <li><button onClick={e => dispatch(logoutCustomer())} class="dropdown-item text-danger">Logout</button></li>
+                                </ul>
+                            </div>
                         </div>
                     }
                 </div>
