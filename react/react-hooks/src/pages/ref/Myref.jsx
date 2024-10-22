@@ -8,7 +8,7 @@ const Myref = () => {
         console.log(test.current)
     }, [])
     return <div>
-        reg
+        ref
         <h1 ref={test}>hello</h1>
 
         <input type="file" ref={demo} style={{ display: "none" }} />
