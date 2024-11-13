@@ -3,7 +3,7 @@ import useDynamicform from './useDynamicform'
 
 const Dynamic = () => {
     const { ui, data } = useDynamicform([
-        { name: "profile", type: "file" },
+        { name: "profile", type: "file", validation: [{ required: "name required", min: 3, max: 5 }] },
         { name: "fname", type: "text" },
         { name: "lname", type: "text" },
         { name: "email", type: "email" },
