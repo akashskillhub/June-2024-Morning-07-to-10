@@ -1,14 +1,11 @@
 const User = require("../models/User")
-
+const jwt = require("jsonwebtoken")
 exports.getAllUsers = async (req, res) => {
 
-    console.log(req.cookies);
-    if (!req.cookies.test) {
-        return res.status(401).json({
-            messsage: "unauthorized access. please login"
-        })
-    }
-
     const result = await User.find()
-    res.json({ message: "fetch success", result })
+    res.json({ message: "user fetch success", result })
+
+}
+exports.getDymmyData = async (req, res) => {
+    res.json({ message: "dummy data fetch success" })
 }
