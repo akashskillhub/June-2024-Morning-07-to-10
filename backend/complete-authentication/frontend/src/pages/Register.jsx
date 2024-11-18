@@ -7,7 +7,7 @@ import { useSingupMutation } from '../redux/apis/authApi'
 import { toast } from 'react-toastify'
 
 const Register = () => {
-    const [createAccount, { isLoading, isSuccess, isError, error }] = useSingupMutation()
+    const [createAccount, { data, isLoading, isSuccess, isError, error }] = useSingupMutation()
     const navigate = useNavigate()
     const formik = useFormik({
         initialValues: {

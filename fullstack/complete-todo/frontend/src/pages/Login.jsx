@@ -1,14 +1,14 @@
 import { useFormik } from 'formik'
+import { toast } from 'react-toastify'
 import * as yup from 'yup'
 import clsx from 'clsx'
-import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
 import { useSinginMutation } from '../redux/apis/authApi'
-import { toast } from 'react-toastify'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-    const [loginToAccount, { data, isLoading, isSuccess, isError, error }] = useSinginMutation()
     const navigate = useNavigate()
+    const [signin, { isLoading, isError, isSuccess, error, data }] = useSinginMutation()
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -19,7 +19,7 @@ const Login = () => {
             password: yup.string().required("Enter password"),
         }),
         onSubmit: (values, { resetForm }) => {
-            loginToAccount(values)
+            signin(values)
             resetForm()
         }
     })
@@ -28,40 +28,52 @@ const Login = () => {
         "is-invalid": formik.touched[key] && formik.errors[key],
         "is-valid": formik.touched[key] && !formik.errors[key],
     })
+
+
     useEffect(() => {
         if (isSuccess) {
+            toast.success("register success")
             navigate("/account")
         }
     }, [isSuccess])
     useEffect(() => {
         if (isError) {
-            toast.error(JSON.stringify(error, null, 2))
+            toast.success(error.data.message)
         }
     }, [isError])
+    if (isLoading) {
+        return <div class="spinner-border text-primary"></div>
+    }
+
     return <>
         <div className="container mt-5">
             <div className="row">
                 <div className="col-sm-6 offset-sm-3">
-                    <div class="card">
-                        <div class="card-header">Login</div>
+                    <div className="card">
+                        <div className="card-header">Login</div>
                         <form onSubmit={formik.handleSubmit}>
 
-                            <div class="card-body">
+                            <div className="card-body">
 
-                                <div>
-                                    <input placeholder='Enter email' type="text" className={cn("email")} {...formik.getFieldProps("email")} />
+                                <div className='form-floating'>
+                                    <input name='email' placeholder='Enter email' type="text"
+                                        className={cn("email")}
+                                        {...formik.getFieldProps("email")} />
+                                    <label htmlFor="email">Enter Email</label>
                                     <span className='invalid-feedback'>{formik.errors.email}</span>
                                 </div>
-                                <div>
+                                <div className='form-floating'>
                                     <input
+                                        name='password'
                                         placeholder='Enter password'
-                                        type="text"
+                                        type="password"
                                         className={cn("password")}
                                         {...formik.getFieldProps("password")} />
+                                    <label htmlFor="password">Enter Password</label>
                                     <span className='invalid-feedback'>{formik.errors.password}</span>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mt-3 w-100">Login</button>
+                                <button type="submit" className="btn btn-primary mt-3 w-100 btn-lg">Login</button>
                             </div>
                         </form>
                     </div>
