@@ -6,7 +6,7 @@ import { useSelector } from "react-redux"
 import { useSingoutMutation } from "../redux/apis/authApi"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
-import { useAddTodoMutation, useDeleteTodoMutation, useLazyGetTodosQuery, useUpdateTodoMutation } from "../redux/apis/todoApi"
+import { useAddTodoMutation, useDeleteTodoMutation, useGetTodosQuery, useLazyGetTodosQuery, useUpdateTodoMutation } from "../redux/apis/todoApi"
 
 const Account = () => {
     return <>
@@ -51,7 +51,6 @@ const Navbar = () => {
 const Todos = () => {
     const [selectedTodo, setSelectedTodo] = useState()
     const [getTodo, { data }] = useLazyGetTodosQuery()
-
     const [addTodo, {
         isSuccess: addSuccess,
         isLoading: isAddLoading,
