@@ -5,7 +5,7 @@ const router = require("express").Router()
 router
     .get("/fetch", getBlog)
     .post("/create", addBlog)
-    .put("/update", updateBlog)
-    .delete("/delete", deleteBlog)
+    .put("/update/:blogId", updateBlog)
+    .delete("/delete/:blogId", deleteBlog)
 
 module.exports = router

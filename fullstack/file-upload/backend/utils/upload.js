@@ -1,12 +1,15 @@
 const multer = require("multer")
+const path = require("path")
 
-const heroStorage = multer.diskStorage({
-    filename: (req, file, next) => {
-        next(null, "1.png")
+const blogStorage = multer.diskStorage({
+    filename: (req, file, cb) => {
+        const fn = Date.now() + path.extname(file.originalname)
+        cb(null, fn)
     },
-    destination: (req, file, next) => {
-        next(null, "test")
-    }
+    // destination: (req, file, cb) => {
+    //     cb(null, "test")
+    // }
 })
-//                                                          👇 same as formik.values.hero in Blogs.jsx
-exports.upload = multer({ storage: heroStorage }).single("hero")
+
+exports.upload = multer({ storage: blogStorage }).single("hero")
+// module.exports = upload
