@@ -5,7 +5,9 @@ import PublicNavbar from './Navbar'
 const PublicLayout = () => {
     return <>
         <PublicNavbar />
-        <Outlet />
+        <div className='my-5'>
+            <Outlet />
+        </div>
         <Footer />
     </>
 }
