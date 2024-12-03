@@ -33,7 +33,13 @@ exports.loginAdmin = async (req, res) => {
         // secure: true
     })
 
-    res.json({ message: "admin login success" })
+    res.json({
+        message: "admin login success", result: {
+            _id: result._id,
+            name: result.name,
+            email: result.email,
+        }
+    })
 }
 exports.logoutAdmin = async (req, res) => {
     res.clearCookie("admin")
