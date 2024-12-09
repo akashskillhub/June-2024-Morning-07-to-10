@@ -40,7 +40,6 @@ function PublicNavbar() {
                         <Nav.Link href="#action2">Woman</Nav.Link>
                         <Nav.Link href="#action2">Kids</Nav.Link>
                         <Nav.Link href="#action2">Winter</Nav.Link>
-
                     </Nav>
                     <div className="input-group me-2 w-25">
                         <Form.Control

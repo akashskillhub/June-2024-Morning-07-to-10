@@ -45,3 +45,7 @@ exports.logoutAdmin = async (req, res) => {
     res.clearCookie("admin")
     res.json({ message: "admin logout success" })
 }
+
+// customerRegister
+// customerLogin
+// customerLogout

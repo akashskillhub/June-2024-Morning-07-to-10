@@ -1,8 +1,9 @@
-const arr = [10, 20]
+const test = (arg = "dell") => {
+    console.log(arg)
 
-const x = arr.find(item => item === 30)
-// console.log(x)
-if (!x) {
-    arr.push(30)
 }
+
+const x = test()
+
+
 

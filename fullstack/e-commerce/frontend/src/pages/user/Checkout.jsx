@@ -5,6 +5,7 @@ import { Col, Container } from "react-bootstrap"
 import Form from 'react-bootstrap/Form';
 import { MdDeleteForever } from "react-icons/md";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
+import OrderSummery from "../../components/public/OrderSummery";
 
 
 const Checkout = () => {
@@ -338,25 +339,7 @@ const Checkout = () => {
                     </div>
 
                     <div class="card-body">
-                        <div className='d-flex justify-content-between'>
-                            <p>Subtotal</p>
-                            <p>$64.00</p>
-                        </div>
-                        <hr />
-                        <div className='d-flex justify-content-between'>
-                            <p>Shipping estimate <span className='text-secondary'><BsFillQuestionCircleFill /></span></p>
-                            <p>$5.00</p>
-                        </div>
-                        <hr />
-                        <div className='d-flex justify-content-between'>
-                            <p>Taxes <span className='text-secondary'><BsFillQuestionCircleFill /></span></p>
-                            <p>$5.52</p>
-                        </div>
-                        <hr />
-                        <div className='d-flex justify-content-between'>
-                            <h6>Total</h6>
-                            <p>$75.52</p>
-                        </div>
+                        <OrderSummery showCheckout={false} />
                     </div>
                     <div class="card-footer">
                         <button className='btn btn-primary'>Confirm Order</button>

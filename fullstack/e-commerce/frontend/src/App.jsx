@@ -17,6 +17,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/ReactToastify.min.css'
 import AdminLogin from './pages/public/AdminLogin'
 import AdminProtected from './pages/share/AdminProtected'
+import CustomerProtected from './pages/share/CustomerProtected'
 
 const App = () => {
   return <>
@@ -27,7 +28,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="details/:pid" element={<Details />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="checkout" element={<Checkout />} />
+          <Route path="checkout" element={<CustomerProtected compo={<Checkout />} />} />
           <Route path="success" element={<Success />} />
         </Route>
         <Route path='/admin' element={<AdminProtected compo={<AdminLayout />} />}>

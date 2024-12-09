@@ -2,6 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik';
 import { clsx } from 'clsx';
 import * as yup from 'yup'
+import { Link } from 'react-router-dom';
 const Signin = () => {
     const formik = useFormik({
         enableReinitialize: true,
@@ -50,6 +51,7 @@ const Signin = () => {
                                     className='btn btn-primary w-100'
                                     type='submit'>Login</button>
                             </form>
+                            <Link className='nav-link' to="/register">Dont have account? Signup</Link>
                         </div>
 
                     </div>
