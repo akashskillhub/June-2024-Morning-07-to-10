@@ -1,4 +1,8 @@
-// const remove = "1.jpg"
-const remove = ["1.jpg", "2.jpg"]
+const arr = [10, 20]
 
-console.log(typeof remove)
+const x = arr.find(item => item === 30)
+// console.log(x)
+if (!x) {
+    arr.push(30)
+}
+

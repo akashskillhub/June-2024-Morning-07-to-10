@@ -2,8 +2,12 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const adminApi = createApi({
     reducerPath: "adminApi",
-    //                                                                      👇from backend index.js
-    baseQuery: fetchBaseQuery({ baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api/admin` }),
+
+    baseQuery: fetchBaseQuery({
+        //                                            👇from backend > index.js
+        baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api/admin`,
+        credentials: "include"
+    }),
     tagTypes: ["product"],
     endpoints: (builder) => {
         return {
@@ -31,7 +35,7 @@ export const adminApi = createApi({
                     return {
                         url: "/product/update/" + productData._id,
                         method: "PUT",
-                        body: productData
+                        body: productData.fd
                     }
                 },
                 invalidatesTags: ["product"]

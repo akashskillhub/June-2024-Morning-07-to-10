@@ -12,6 +12,8 @@ cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME
 })
 
+// authentication
+// todo app single
 exports.addProduct = async (req, res) => {
     upload(req, res, async err => {
         if (err) {
@@ -61,8 +63,10 @@ exports.updateProducts = async (req, res) => {
     */
     upload(req, res, async err => {
         try {
+            console.log(req.body)
+
             const allImages = []
-            if (req.files.length > 0) {
+            if (req.files && req.files.length > 0) {
 
                 // upload number  2
                 // remove  1
@@ -92,7 +96,7 @@ exports.updateProducts = async (req, res) => {
             res.json({ message: "product update success" })
         } catch (error) {
             console.log(error)
-            res.staus(400).json({ message: "something went wrong" })
+            res.status(400).json({ message: "something went wrong" })
         }
     })
 

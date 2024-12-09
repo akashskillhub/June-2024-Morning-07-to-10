@@ -5,7 +5,9 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 function PublicNavbar() {
+    const { cart } = useSelector(state => state.bag)
     return <>
         <div className='bg-light'>
             <div className='d-flex justify-content-between align-items-center container'>
@@ -49,7 +51,9 @@ function PublicNavbar() {
                         <Button variant="outline-light"><FaSearch /></Button>
                     </div>
                     <Button variant="outline-light me-2"><FaUser /></Button>
-                    <Link to="/cart" className='btn btn-outline-light'><FaShoppingCart /></Link>
+                    <Link to="/cart" className='btn btn-outline-light'>
+                        <FaShoppingCart /> {cart.length}
+                    </Link>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
