@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs")
 const Admin = require("../models/Admin")
 const jwt = require("jsonwebtoken")
+const User = require("../models/User")
 
 exports.registerAdmin = async (req, res) => {
     const { email, password } = req.body
@@ -49,3 +50,49 @@ exports.logoutAdmin = async (req, res) => {
 // customerRegister
 // customerLogin
 // customerLogout
+
+exports.registerCustomer = async (req, res) => {
+    const { email, password } = req.body
+    const result = await User.findOne({ email })
+    if (result) {
+        return res.status(409).json({ message: "email already registered" })
+    }
+    const hash = await bcrypt.hash(password, 10)
+    await User.create({ ...req.body, password: hash })
+
+    res.json({ message: "user register success" })
+}
+
+exports.loginCustomer = async (req, res) => {
+    const { email, password } = req.body
+    const result = await User.findOne({ email })
+    if (!result) {
+        return res.status(401).json({ message: "invalid credentials email" })
+    }
+
+    const isVerify = await bcrypt.compare(password, result.password)
+    if (!isVerify) {
+        return res.status(401).json({ message: "invalid credentials password" })
+    }
+
+    const token = jwt.sign({ _id: result._id }, process.env.JWT_SECRET)
+
+    res.cookie("user", token, {
+        maxAge: 1000 * 60 * 60 * 24,
+        httpOnly: true,
+        // secure: true
+    })
+
+    res.json({
+        message: "User login success", result: {
+            _id: result._id,
+            name: result.name,
+            email: result.email,
+        }
+    })
+}
+
+exports.logoutCustomer = async (req, res) => {
+    res.clearCookie("user")
+    res.json({ message: "user logout success" })
+}

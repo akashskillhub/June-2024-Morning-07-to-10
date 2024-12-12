@@ -18,6 +18,9 @@ import 'react-toastify/ReactToastify.min.css'
 import AdminLogin from './pages/public/AdminLogin'
 import AdminProtected from './pages/share/AdminProtected'
 import CustomerProtected from './pages/share/CustomerProtected'
+import UserLayout from './components/user/UserLayout'
+import OrderHistory from './pages/user/OrderHistory'
+import UserProfile from './pages/user/UserProfile'
 
 const App = () => {
   return <>
@@ -36,6 +39,11 @@ const App = () => {
           <Route path="products" element={<Products />} />
           <Route path="users" element={<Users />} />
           <Route path="orders" element={<Orders />} />
+        </Route>
+
+        <Route path='/user' element={<CustomerProtected compo={<UserLayout />} />}>
+          <Route index element={<OrderHistory />} /> {/* http://localhost:5173/user */}
+          <Route path="profile" element={<UserProfile />} /> {/* http://localhost:5173/user/profile */}
         </Route>
 
         <Route path='/login' element={<Signin />} />

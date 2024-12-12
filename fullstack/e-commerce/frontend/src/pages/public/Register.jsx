@@ -2,9 +2,15 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { useFormik } from 'formik';
 import { clsx } from 'clsx';
 import * as yup from 'yup'
+import { useCustomerRegisterMutation } from '../../redux/auth/authApi';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 const Register = () => {
+    const [registerCustomer, { isSuccess }] = useCustomerRegisterMutation()
+    const navigate = useNavigate()
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
@@ -20,15 +26,21 @@ const Register = () => {
             password: yup.string().required("Enter mobile"),
         }),
         onSubmit: (values, { resetForm }) => {
+            registerCustomer(values)
             resetForm()
         }
     })
-
     const handleClasses = key => clsx({
         'form-control my-2': true,
         "is-invalid": formik.touched[key] && formik.errors[key],
         "is-valid": formik.touched[key] && !formik.errors[key],
     })
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success("register success")
+            navigate("/login")
+        }
+    }, [isSuccess])
     return <>
 
         <Container >

@@ -3,7 +3,10 @@ import { authApi } from "../auth/authApi";
 
 const authSlice = createSlice({
     name: "authSlice",
-    initialState: { admin: JSON.parse(localStorage.getItem("ecom-admin")) },
+    initialState: {
+        admin: JSON.parse(localStorage.getItem("ecom-admin")),
+        customer: JSON.parse(localStorage.getItem("ecom-user"))
+    },
     reducers: {
         invalidate: (state, { payload }) => {
             payload.forEach(item => {
@@ -17,6 +20,14 @@ const authSlice = createSlice({
         })
         .addMatcher(authApi.endpoints.adminLogout.matchFulfilled, (state, { payload }) => {
             state.admin = null
+        })
+
+
+        .addMatcher(authApi.endpoints.customerLogin.matchFulfilled, (state, { payload }) => {
+            state.customer = payload
+        })
+        .addMatcher(authApi.endpoints.customerLogout.matchFulfilled, (state, { payload }) => {
+            state.customer = null
         })
 
 })

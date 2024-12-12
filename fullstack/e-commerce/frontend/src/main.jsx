@@ -5,9 +5,9 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { Provider } from 'react-redux'
 import reduxStore from './redux/store.js'
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Provider store={reduxStore}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  //<React.StrictMode>
+  <Provider store={reduxStore}>
+    <App />
+  </Provider>
+  //</React.StrictMode>,
 )

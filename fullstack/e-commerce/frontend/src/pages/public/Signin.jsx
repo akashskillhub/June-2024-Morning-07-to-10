@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useFormik } from 'formik';
 import { clsx } from 'clsx';
 import * as yup from 'yup'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCustomerLoginMutation } from '../../redux/auth/authApi';
+import { toast } from 'react-toastify';
 const Signin = () => {
+    const [loginCustomer, { isSuccess }] = useCustomerLoginMutation()
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
@@ -15,6 +18,7 @@ const Signin = () => {
             email: yup.string().required("Enter email"),
         }),
         onSubmit: (values, { resetForm }) => {
+            loginCustomer(values)
             resetForm()
         }
     })
@@ -23,6 +27,13 @@ const Signin = () => {
         "is-invalid": formik.touched[key] && formik.errors[key],
         "is-valid": formik.touched[key] && !formik.errors[key],
     })
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success("login success")
+            navigate("/checkout")
+        }
+    }, [isSuccess])
     return <>
 
         <div className="container">

@@ -3,7 +3,7 @@ require("dotenv").config()
 const mongoose = require("mongoose")
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
-const { adminProtected } = require("./middlewares/protected.middleware")
+const { adminProtected, customerProtected } = require("./middlewares/protected.middleware")
 
 const app = express()
 app.use(cors({
@@ -15,6 +15,7 @@ app.use(cookieParser())
 app.use("/api/admin", adminProtected, require("./routes/admin.routes"))
 app.use("/api/auth", require("./routes/auth.routes"))
 app.use("/api/public", require("./routes/public.routes"))
+app.use("/api/customer", customerProtected, require("./routes/customer.routes"))
 
 mongoose.connect(process.env.MONGO_URL)
 mongoose.connection.once("open", () => {

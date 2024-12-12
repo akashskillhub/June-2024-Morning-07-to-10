@@ -1,13 +1,23 @@
 import Button from 'react-bootstrap/Button';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Dropdown } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useCustomerLogoutMutation } from '../../redux/auth/authApi';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 function PublicNavbar() {
     const { cart } = useSelector(state => state.bag)
+    const { customer } = useSelector(state => state.auth)
+    const [logoutCustomer, { isSuccess }] = useCustomerLogoutMutation()
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success("logout success")
+        }
+    }, [isSuccess])
     return <>
         <div className='bg-light'>
             <div className='d-flex justify-content-between align-items-center container'>
@@ -49,7 +59,25 @@ function PublicNavbar() {
                         />
                         <Button variant="outline-light"><FaSearch /></Button>
                     </div>
-                    <Button variant="outline-light me-2"><FaUser /></Button>
+                    {
+                        customer
+                            ? <Dropdown className='me-2'>
+                                <Dropdown.Toggle variant="light" id="dropdown-basic">
+                                    Welcome {customer.name}
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item>
+                                        <Link to="/user" className='nav-link'>Order History</Link>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item>
+                                        <Link to="/user/profile" className='nav-link'>Profile</Link>
+                                    </Dropdown.Item>
+                                    <button onClick={logoutCustomer} className='dropdown-item text-danger'>Logout</button>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                            : <Button variant="outline-light me-2"><FaUser /></Button>
+                    }
+
                     <Link to="/cart" className='btn btn-outline-light'>
                         <FaShoppingCart /> {cart.length}
                     </Link>
