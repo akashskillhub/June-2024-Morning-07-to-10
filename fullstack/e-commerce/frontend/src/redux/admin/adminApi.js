@@ -51,6 +51,28 @@ export const adminApi = createApi({
                 invalidatesTags: ["product"]
             }),
 
+            getAdminOrders: builder.query({
+                query: arg => {
+                    return {
+                        url: "/orders", //👈 from admin.route.js
+                        method: "GET",
+                        params: arg
+                    }
+                },
+                providesTags: ["status"]
+            }),
+
+            updateAdminOrder: builder.mutation({
+                query: orderData => {
+                    return {
+                        url: "/order/update/" + orderData._id,
+                        method: "PUT",
+                        body: orderData
+                    }
+                },
+                invalidatesTags: ["status"]
+            }),
+
         }
     }
 })
@@ -59,5 +81,8 @@ export const {
     useAddAdminProductMutation,
     useDeleteAdminProductMutation,
     useGetAdminProductQuery,
-    useUpdateAdminProductMutation
+    useUpdateAdminProductMutation,
+    useGetAdminOrdersQuery,
+    useUpdateAdminOrderMutation,
+    useLazyGetAdminOrdersQuery
 } = adminApi

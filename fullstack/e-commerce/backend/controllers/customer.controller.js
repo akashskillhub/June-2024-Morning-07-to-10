@@ -15,6 +15,7 @@ exports.placeOrder = async (req, res) => {
         res.staus(400).json({ message: "unable to place order" })
     }
 }
+
 exports.fetchCustomerOrders = async (req, res) => {
     try {
         const result = await Order

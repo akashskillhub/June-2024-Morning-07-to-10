@@ -3,6 +3,7 @@
 const Product = require("../models/Product")
 const path = require("path")
 const { upload } = require("../utils/upload")
+const Order = require("../models/Order")
 
 const cloudinary = require("cloudinary").v2
 
@@ -12,8 +13,6 @@ cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME
 })
 
-// authentication
-// todo app single
 exports.addProduct = async (req, res) => {
     upload(req, res, async err => {
         if (err) {
@@ -112,3 +111,22 @@ exports.deleteProducts = async (req, res) => {
     await Product.findByIdAndDelete(req.params.productId)
     res.json({ message: "product delete success" })
 }
+
+
+exports.fetchAdminOrders = async (req, res) => {
+    const total = await Order.countDocuments()
+    const { skip, limit } = req.query
+    const result = await Order
+        .find()
+        .skip(skip)
+        .limit(limit)
+        .populate("customer", "name")
+        .populate("products", "-__v")
+
+    res.json({ message: "order fetch success", result, total })
+}
+exports.adminUpdateOrderStatus = async (req, res) => {
+    await Order.findByIdAndUpdate(req.params.oid, { status: req.body.status })
+    res.json({ message: "order status update success" })
+}
+
