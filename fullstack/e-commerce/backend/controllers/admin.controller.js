@@ -4,6 +4,8 @@ const Product = require("../models/Product")
 const path = require("path")
 const { upload } = require("../utils/upload")
 const Order = require("../models/Order")
+const { sendEmail } = require("../utils/email")
+const User = require("../models/User")
 
 const cloudinary = require("cloudinary").v2
 
@@ -127,6 +129,15 @@ exports.fetchAdminOrders = async (req, res) => {
 }
 exports.adminUpdateOrderStatus = async (req, res) => {
     await Order.findByIdAndUpdate(req.params.oid, { status: req.body.status })
+    const x = await Order.findById(req.params.oid)
+    const result = await User.findById(x.customer)
+    if (req.body.status !== "placed") {
+        await sendEmail({
+            to: result.email,
+            subject: "our Order Status Has Been Updated!",
+            message: `Your Order Status: Now ${req.body.status}`
+        })
+    }
     res.json({ message: "order status update success" })
 }
 

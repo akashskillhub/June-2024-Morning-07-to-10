@@ -1,4 +1,4 @@
-import { Button, Card, Col, Container, Row } from 'react-bootstrap'
+import { Button, Card, Col, Container, Row, Spinner } from 'react-bootstrap'
 import { useFormik } from 'formik';
 import { clsx } from 'clsx';
 import * as yup from 'yup'
@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 
 const Register = () => {
-    const [registerCustomer, { isSuccess }] = useCustomerRegisterMutation()
+    const [registerCustomer, { isSuccess, isLoading }] = useCustomerRegisterMutation()
     const navigate = useNavigate()
     const formik = useFormik({
         enableReinitialize: true,
@@ -41,6 +41,12 @@ const Register = () => {
             navigate("/login")
         }
     }, [isSuccess])
+
+    if (isLoading) {
+        return <div>
+            Please Wait.. <Spinner></Spinner>
+        </div>
+    }
     return <>
 
         <Container >

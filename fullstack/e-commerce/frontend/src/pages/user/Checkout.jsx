@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import *as yup from "yup"
 import { useFormik } from "formik"
-import { Col, Container, FormControl } from "react-bootstrap"
+import { Col, Container, FormControl, Spinner } from "react-bootstrap"
 import Form from 'react-bootstrap/Form';
 import { MdDeleteForever } from "react-icons/md";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
@@ -16,7 +16,7 @@ import { emptyCart } from "../../redux/slices/cartSlice";
 const Checkout = () => {
     const dispatch = useDispatch()
     const { cart } = useSelector(state => state.bag)
-    const [placeOrder, { isSuccess }] = usePalceOrderMutation()
+    const [placeOrder, { isSuccess, isLoading }] = usePalceOrderMutation()
     const navigate = useNavigate()
     const formik = useFormik({
         initialValues: {
@@ -52,6 +52,12 @@ const Checkout = () => {
             navigate("/success")
         }
     }, [isSuccess])
+
+    if (isLoading) {
+        return <div>
+            please wait ... <Spinner></Spinner>
+        </div>
+    }
     return <Container>
         <form onSubmit={formik.handleSubmit}>
             <div className="d-flex justify-content-between gap-5 ">

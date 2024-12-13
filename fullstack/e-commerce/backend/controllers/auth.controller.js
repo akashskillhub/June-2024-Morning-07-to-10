@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs")
 const Admin = require("../models/Admin")
 const jwt = require("jsonwebtoken")
 const User = require("../models/User")
+const { sendEmail } = require("../utils/email")
 
 exports.registerAdmin = async (req, res) => {
     const { email, password } = req.body
@@ -52,15 +53,27 @@ exports.logoutAdmin = async (req, res) => {
 // customerLogout
 
 exports.registerCustomer = async (req, res) => {
-    const { email, password } = req.body
-    const result = await User.findOne({ email })
-    if (result) {
-        return res.status(409).json({ message: "email already registered" })
+    try {
+        const { email, password } = req.body
+        const result = await User.findOne({ email })
+        if (result) {
+            return res.status(409).json({ message: "email already registered" })
+        }
+        const hash = await bcrypt.hash(password, 10)
+        await User.create({ ...req.body, password: hash })
+        await sendEmail({
+            to: email,
+            subject: "welcome to flipkart-lite",
+            message: `
+                <h1> Welcome, ${req.body.name}</h1>
+                <h2>Thank you for joining Flipkart-Lite! We’re thrilled to have you as part of our community. Our goal is to provide best price.</h2>
+            `
+        })
+        res.json({ message: "user register success" })
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ message: "unable to register customer" })
     }
-    const hash = await bcrypt.hash(password, 10)
-    await User.create({ ...req.body, password: hash })
-
-    res.json({ message: "user register success" })
 }
 
 exports.loginCustomer = async (req, res) => {
