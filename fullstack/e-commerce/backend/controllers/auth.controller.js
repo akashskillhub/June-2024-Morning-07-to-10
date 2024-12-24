@@ -88,6 +88,10 @@ exports.loginCustomer = async (req, res) => {
         return res.status(401).json({ message: "invalid credentials password" })
     }
 
+    if (!result.isActive) {
+        return res.status(401).json({ message: "account block" })
+    }
+
     const token = jwt.sign({ _id: result._id }, process.env.JWT_SECRET)
 
     res.cookie("user", token, {

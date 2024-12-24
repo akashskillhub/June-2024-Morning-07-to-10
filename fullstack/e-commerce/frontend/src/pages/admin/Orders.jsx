@@ -72,7 +72,7 @@ const Orders = () => {
         }
 
         {data && [...Array(Math.ceil(data.total / pagi.limit)).keys()]
-            .map(item => <Button className='me-1' onClick={e => setPagi({ ...pagi, skip: item })}>
+            .map(item => <Button className='me-1' onClick={e => setPagi({ ...pagi, skip: item * pagi.limit })}>
                 {item + 1}
             </Button>)}
     </Container>

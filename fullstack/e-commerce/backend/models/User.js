@@ -5,5 +5,6 @@ const userSchema = new mongoose.Schema({
     mobile: { type: String, reqiured: true },
     email: { type: String, reqiured: true },
     password: { type: String, reqiured: true },
+    isActive: { type: Boolean, default: true }
 })
 module.exports = mongoose.model("user", userSchema) 

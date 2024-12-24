@@ -83,10 +83,16 @@ exports.updateProducts = async (req, res) => {
                 const result = oldProduct.hero.filter(item => !req.body.remove.includes(item))
                 oldProduct.hero = result
                 if (typeof req.body.remove === "string") {
-                    await cloudinary.uploader.destroy(path.basename(req.body.remove))
+                    // c7yjstomhytrbq1iusdz.png
+                    await cloudinary
+                        .uploader
+                        .destroy(path.basename(req.body.remove, path.extname(req.body.remove)))
                 } else {
                     for (const item of req.body.remove) {
-                        await cloudinary.uploader.destroy(path.basename(item))
+                        // c7yjstomhytrbq1iusdz.png
+                        await cloudinary
+                            .uploader
+                            .destroy(path.basename(item, path.extname(item)))
                     }
                 }
             }
@@ -107,7 +113,7 @@ exports.deleteProducts = async (req, res) => {
     const result = await Product.findById(req.params.productId)
     // step 1 cloudinary / AWS S3
     for (const item of result.hero) {
-        await cloudinary.uploader.destroy(path.basename(item))
+        await cloudinary.uploader.destroy(path.basename(item, path.extname(item)))
     }
     // step 2 database
     await Product.findByIdAndDelete(req.params.productId)
@@ -139,5 +145,26 @@ exports.adminUpdateOrderStatus = async (req, res) => {
         })
     }
     res.json({ message: "order status update success" })
+}
+
+
+
+exports.adminUserFetch = async (req, res) => {
+    try {
+        const total = await User.countDocuments()
+        const { skip, limit } = req.query
+        const result = await User.find().skip(skip).limit(limit)
+        res.json({ message: "user fetch success", result, total })
+    } catch (error) {
+        res.status(400).json({ message: "unable to fetch" })
+    }
+}
+exports.adminBlockUnBlockUser = async (req, res) => {
+    try {
+        await User.findByIdAndUpdate(req.params.uid, { isActive: req.body.isActive })
+        res.json({ message: "user block success" })
+    } catch (error) {
+        res.status(400).json({ message: "unable to block" })
+    }
 }
 

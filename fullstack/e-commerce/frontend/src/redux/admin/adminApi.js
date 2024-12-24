@@ -61,7 +61,6 @@ export const adminApi = createApi({
                 },
                 providesTags: ["status"]
             }),
-
             updateAdminOrder: builder.mutation({
                 query: orderData => {
                     return {
@@ -72,6 +71,30 @@ export const adminApi = createApi({
                 },
                 invalidatesTags: ["status"]
             }),
+
+
+            getAdminUsers: builder.query({
+                query: arg => {
+                    return {
+                        url: "/user/fetch", //👈 from admin.route.js
+                        method: "GET",
+                        params: arg
+                    }
+                },
+                providesTags: ["user"]
+            }),
+            blockUnBlockAdminUser: builder.mutation({
+                query: userData => {
+                    return {
+                        url: `/user/block/` + userData._id, //👈 from admin.route.js
+                        method: "PUT",
+                        body: userData // isActive
+                        // params: arg
+                    }
+                },
+                invalidatesTags: ["user"]
+            }),
+
 
         }
     }
@@ -84,5 +107,8 @@ export const {
     useUpdateAdminProductMutation,
     useGetAdminOrdersQuery,
     useUpdateAdminOrderMutation,
-    useLazyGetAdminOrdersQuery
+    useLazyGetAdminOrdersQuery,
+    useGetAdminUsersQuery,
+    useLazyGetAdminUsersQuery,
+    useBlockUnBlockAdminUserMutation
 } = adminApi

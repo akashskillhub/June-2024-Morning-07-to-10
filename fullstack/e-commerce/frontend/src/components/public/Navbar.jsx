@@ -36,7 +36,7 @@ function PublicNavbar() {
                 </div>
             </div>
         </div>
-        <Navbar expand="lg" className="bg-dark navbar-dark">
+        <Navbar expand="lg" className="bg-danger navbar-dark">
             <Container>
                 <Navbar.Brand href="#">Flipkart - lite</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />

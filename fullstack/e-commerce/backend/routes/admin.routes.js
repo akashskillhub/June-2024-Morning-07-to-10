@@ -1,4 +1,4 @@
-const { getProducts, addProduct, updateProducts, deleteProducts, fetchAdminOrders, adminUpdateOrderStatus } = require("../controllers/admin.controller")
+const { getProducts, addProduct, updateProducts, deleteProducts, fetchAdminOrders, adminUpdateOrderStatus, adminUserFetch, adminBlockUnBlockUser } = require("../controllers/admin.controller")
 
 const router = require("express").Router()
 
@@ -9,5 +9,7 @@ router
     .delete("/product/delete/:productId", deleteProducts)
     .get("/orders", fetchAdminOrders)
     .put("/order/update/:oid", adminUpdateOrderStatus)
+    .get("/user/fetch", adminUserFetch)
+    .put("/user/block/:uid", adminBlockUnBlockUser)
 
 module.exports = router
