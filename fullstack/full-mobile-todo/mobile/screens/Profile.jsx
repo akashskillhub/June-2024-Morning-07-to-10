@@ -1,18 +1,32 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Button, Card, List, MD3Colors } from 'react-native-paper'
+import React, { useEffect } from 'react'
+import { ActivityIndicator, Button, Card, List, MD3Colors } from 'react-native-paper'
+import { useSelector } from 'react-redux'
+import { useMobileEmployeeLogoutMutation } from '../redux/authApi'
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
+    const { employee } = useSelector(state => state.auth)
+    const [logout, { isSuccess, isLoading }] = useMobileEmployeeLogoutMutation()
+    useEffect(() => {
+        if (isSuccess) {
+            navigation.navigate("login")
+        }
+    }, [isSuccess])
     return <>
         <Card>
-            <Card.Content>
-                <List.Section>
-                    <List.Subheader>Profile</List.Subheader>
-                    <List.Item title="John doe"></List.Item>
-                    <List.Item title="john@gmail.com"></List.Item>
-                    <Button mode='contained' buttonColor={MD3Colors.error50}>Logout</Button>
-                </List.Section>
-            </Card.Content>
+            {
+                isLoading
+                    ? <ActivityIndicator />
+                    : <Card.Content>
+                        <List.Section>
+                            <List.Subheader>Profile</List.Subheader>
+                            <List.Item title={employee && employee.name}></List.Item>
+                            <List.Item title={employee && employee.email}></List.Item>
+                            <Button onPress={logout} mode='contained' buttonColor={MD3Colors.error50}>Logout</Button>
+                        </List.Section>
+                    </Card.Content>
+            }
+
         </Card>
     </>
 }
