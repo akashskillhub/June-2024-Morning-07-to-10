@@ -2,14 +2,16 @@ import { FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import { ActivityIndicator, Button, Card } from 'react-native-paper'
 import { useCompleteMobileEmployeeTodoMutation, useGetMobileEmployeeTodosQuery, useLazyGetMobileEmployeeTodosQuery } from '../redux/employeeApi'
+import io from "socket.io-client"
+const server = io(process.env.EXPO_PUBLIC_BACKEND_URL)
 
 const Todos = () => {
     const [completeTodo, { error: completeError, isSuccess }] = useCompleteMobileEmployeeTodoMutation()
     const [getTodos, { data, isLoading, error }] = useLazyGetMobileEmployeeTodosQuery()
 
-    console.warn(completeError)
-    console.log(isSuccess)
-
+    server.on('create-todo', () => {
+        getTodos()
+    })
     useEffect(() => { getTodos() }, [])
     return <>
         {

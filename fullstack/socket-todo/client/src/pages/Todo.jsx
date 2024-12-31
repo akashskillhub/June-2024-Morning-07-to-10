@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
-import { useCreateAdminTodoMutation, useGetAdminEmployeeQuery, useGetAdminTodosQuery } from '../redux/adminApi'
+import React, { useEffect, useState } from 'react'
+import { useCreateAdminTodoMutation, useGetAdminEmployeeQuery, useLazyGetAdminTodosQuery } from '../redux/adminApi'
+import io from "socket.io-client"
+const socket = io(import.meta.env.VITE_BACKEND_URL)
 
 const Todo = () => {
+
+
     const { data } = useGetAdminEmployeeQuery()
     const [todoData, setTodoData] = useState([])
     const [addTodo, { isSuccess }] = useCreateAdminTodoMutation()
@@ -9,6 +13,7 @@ const Todo = () => {
         const { name, value } = e.target
         setTodoData({ ...todoData, [name]: value })
     }
+
     return <>
         <div class="container">
             <div class="row">
@@ -75,7 +80,12 @@ const Todo = () => {
 
 
 const TodoTable = () => {
-    const { data } = useGetAdminTodosQuery()
+    const [getTodos, { data }] = useLazyGetAdminTodosQuery()
+
+    socket.on("create-todo", data => {
+        getTodos()
+    })
+    useEffect(() => { getTodos() }, [])
     return data && <table className='table table-bordered mt-5'>
         <thead>
             <tr>
@@ -88,7 +98,7 @@ const TodoTable = () => {
         </thead>
         <tbody>
             {
-                data.result.map(item => <tr>
+                data.result.map(item => <tr className={`${item.isComplete ? "table-success" : "table-danger"}`}>
                     <td>{item.employee.name}</td>
                     <td>{item.task}</td>
                     <td>{item.desc}</td>
