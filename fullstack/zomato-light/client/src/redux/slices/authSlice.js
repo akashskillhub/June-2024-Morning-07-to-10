@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { authApi } from "../apis/authApi";
+import { resturantApi } from "../apis/resturantApi";
 
 const authSlice = createSlice({
     name: "authSlice",
@@ -22,6 +23,11 @@ const authSlice = createSlice({
 
         .addMatcher(authApi.endpoints.resturantSignout.matchFulfilled, (state, { payload }) => {
             state.resturant = null
+        })
+
+
+        .addMatcher(resturantApi.endpoints.resturantUpdateInfo.matchFulfilled, (state, { payload }) => {
+            state.resturant.infoComplete = true
         })
 
 })

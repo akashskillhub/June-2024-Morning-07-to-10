@@ -11,9 +11,10 @@ const resturantSchema = new mongoose.Schema({
     certificate: { type: String, },
     type: { type: String, enum: ["veg", "non-veg"], },
     hero: { type: String, },
-    startTime: { type: Date, },
-    endTime: { type: Date, },
+    startTime: { type: String, },
+    endTime: { type: String, },
     isActive: { type: Boolean, default: false, },
+    infoComplete: { type: Boolean, default: false, },
 }, { timestamps: true })
 
 module.exports = mongoose.model("resturant", resturantSchema)

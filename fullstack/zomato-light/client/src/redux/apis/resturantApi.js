@@ -17,6 +17,12 @@ export const resturantApi = createApi({
                         body: resturantData
                     }
                 },
+                transformResponse: data => {
+                    const resto = JSON.parse(localStorage.getItem("zomato-resturant"))
+                    resto.infoComplete = true
+                    localStorage.setItem("zomato-resturant", JSON.stringify(resto))
+                    return data
+                },
                 invalidatesTags: ["info"]
             }),
 
