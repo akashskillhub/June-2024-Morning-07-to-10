@@ -25,9 +25,56 @@ export const resturantApi = createApi({
                 },
                 invalidatesTags: ["info"]
             }),
+            resturantAddMenu: builder.mutation({
+                query: resturantData => {
+                    return {
+                        url: "/add-menu",
+                        method: "POST",
+                        body: resturantData
+                    }
+                },
+                invalidatesTags: ["menu"]
+            }),
+            resturantGetMenu: builder.query({
+                query: resturantData => {
+                    return {
+                        url: "/get-menu",
+                        method: "GET",
+                    }
+                },
+                providesTags: ["menu"]
+            }),
+            resturantUpdateMenu: builder.mutation({
+                query: resturantData => {
+                    return {
+                        url: "/update-menu/" + resturantData._id,
+                        method: "PUT",
+                        body: resturantData.fd,// 👈 cause image
+                    }
+                },
+                invalidatesTags: ["menu"]
+            }),
+            resturantDeleteMenu: builder.mutation({
+                query: _id => {
+                    return {
+                        url: "/delete-menu/" + _id,
+                        method: "DELETE",
+                        // body: resturantData.fd,// 👈 cause image
+                    }
+                },
+                invalidatesTags: ["menu"]
+            }),
 
         }
     }
 })
 
-export const { useResturantUpdateInfoMutation } = resturantApi
+export const {
+    useResturantUpdateInfoMutation,
+    useResturantAddMenuMutation,
+
+    useResturantDeleteMenuMutation,
+    useResturantUpdateMenuMutation,
+    useResturantGetMenuQuery,
+    useLazyResturantGetMenuQuery
+} = resturantApi

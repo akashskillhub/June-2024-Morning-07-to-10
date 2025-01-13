@@ -11,7 +11,6 @@ const PublicNavbar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
-                        <Link to="/" className="nav-link active">Add Resturant</Link>
                         <Link to="/login-resturant" className="nav-link">Login</Link>
                         <Link to="/register-resturant" className="nav-link">Register</Link>
                     </div>
