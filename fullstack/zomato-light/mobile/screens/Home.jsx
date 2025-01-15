@@ -13,8 +13,11 @@ import * as Location from 'expo-location';
 import { useSelector } from 'react-redux';
 import { useMobileCustomerUpdateInfoMutation, useMobileGetLocationMutation } from '../redux/apis/customer.api';
 import { Button } from 'react-native-paper';
+import asyncStorage from '@react-native-async-storage/async-storage';
 const Home = () => {
     const { customer } = useSelector(state => state.auth)
+    console.log("customer", customer)
+
     const Tab = createBottomTabNavigator()
     if (customer && !customer.infoComplete) {
         return <>
@@ -62,7 +65,9 @@ const Info = () => {
     const [updateInfo, {
         isSuccess: updateInfoSucess,
         isLoading: updateInfoIsLoading,
-        error: updateError }
+        error: updateError,
+        data: updatedData
+    }
     ] = useMobileCustomerUpdateInfoMutation()
     const [gender, setGender] = useState()
     const [getLocation, { data, isSuccess, isLoading, error }] = useMobileGetLocationMutation()
@@ -80,10 +85,17 @@ const Info = () => {
 
         }
     }
-    console.log(updateError)
-    console.log("success", updateInfoSucess)
+
+    const handleUpdateSuccess = async () => {
+        await asyncStorage.setItem("zomato-customer", JSON.stringify(updatedData))
+    }
 
     useEffect(() => { handleLocation() }, [])
+    useEffect(() => {
+        if (updateInfoSucess) {
+            handleUpdateSuccess()
+        }
+    }, [updateInfoSucess])
     return <>
         <View>
             {

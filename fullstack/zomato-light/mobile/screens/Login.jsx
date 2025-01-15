@@ -1,5 +1,5 @@
 import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Button, Card, TextInput } from 'react-native-paper'
 import { useState } from 'react'
 import {
@@ -8,8 +8,13 @@ import {
 } from '../redux/apis/auth.api'
 
 import asyncStorage from "@react-native-async-storage/async-storage"
+import { useDispatch } from 'react-redux'
+import { setLocalData } from '../redux/slices/auth.slice'
+import { useIsFocused } from '@react-navigation/native'
 const Login = ({ navigation }) => {
-    const [signin, { isSuccess, isLoading }] = useMobileLoginCustomerMutation()
+    const isFocused = useIsFocused()
+    const dispatch = useDispatch()
+    const [signin, { isSuccess, isLoading, reset }] = useMobileLoginCustomerMutation()
     const [verify, { error, isSuccess: verifySuccess, data, isLoading: verifyIsLoading }] = useMobileCustomerVerifyOTPMutation()
     const [otp, setOtp] = useState()
     const [userData, setUserData] = useState({
@@ -21,20 +26,30 @@ const Login = ({ navigation }) => {
         navigation.navigate("home")
     }
     const isLogin = async () => {
-        const x = await asyncStorage.getItem("zomato-customer")
-        if (x) {
+        const result = await asyncStorage.getItem("zomato-customer")
+        if (result) {
+            dispatch(setLocalData(JSON.parse(result)))
             navigation.navigate("home")
         }
     }
-
     useEffect(() => {
         if (verifySuccess) {
             handleLogin()
         }
     }, [verifySuccess])
 
-    useEffect(() => { isLogin() }, [])
-    console.log(error)
+    useEffect(() => {
+        isLogin()
+
+    }, [])
+
+    useEffect(() => {
+        if (isFocused) {
+            reset()
+            setUserData({ userName: "" })
+            setOtp(null)
+        }
+    }, [isFocused])
 
     return (
         <View style={{

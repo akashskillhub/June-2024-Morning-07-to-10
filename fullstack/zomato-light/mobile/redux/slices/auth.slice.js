@@ -5,10 +5,17 @@ import { customerApi } from "../apis/customer.api";
 const authSlice = createSlice({
     name: "authSlice",
     initialState: {},
-    reducers: {},
+    reducers: {
+        setLocalData: (state, { payload }) => {
+            state.customer = payload
+        }
+    },
     extraReducers: builder => builder
         .addMatcher(authApi.endpoints.mobileCustomerVerifyOTP.matchFulfilled, (state, { payload }) => {
             state.customer = payload
+        })
+        .addMatcher(authApi.endpoints.mobileCustomerLogout.matchFulfilled, (state, { payload }) => {
+            state.customer = null
         })
         .addMatcher(customerApi.endpoints.mobileCustomerUpdateInfo.matchFulfilled, (state, { payload }) => {
             state.customer = payload
@@ -16,5 +23,5 @@ const authSlice = createSlice({
 
 })
 
-// export const { invalidate } = authSlice.actions
+export const { setLocalData } = authSlice.actions
 export default authSlice.reducer
