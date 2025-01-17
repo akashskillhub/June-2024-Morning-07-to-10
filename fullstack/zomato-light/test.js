@@ -1,13 +1,16 @@
 const cart = [
-    { _id: 1, name: "abc", qty: 1 },// abc
-    { _id: 2, name: "xyz", qty: 1 },
+    { _id: 1, name: "abc", qty: 2, price: 50 },// abc
+    { _id: 2, name: "xyz", qty: 2, price: 25 },
 ]
-// if (cart[0]._id === 1) {
-//     qty++
-// }
-const payload = 1
-const x = cart.find(item => item._id === payload)
-x.qty = x.qty + 1
-console.log(x)
-console.log(cart)
+
+const x = cart.map(item => {
+    return { dish: item._id, qty: item.qty }
+})
+
+console.log({
+    resutrant: "1231",
+    items: x
+})
+
+
 

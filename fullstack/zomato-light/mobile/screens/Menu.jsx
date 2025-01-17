@@ -60,7 +60,7 @@ const Menu = ({ route }) => {
                 backgroundColor: MD3Colors.primary80
             }}>
                 <Text>{cart.length} items added </Text>
-                <Button onPress={e => navigate("checkout")} mode='contained'>Checkout</Button>
+                <Button onPress={e => navigate("checkout", { resturant: item._id })} mode='contained'>Checkout</Button>
             </View>
         }
 

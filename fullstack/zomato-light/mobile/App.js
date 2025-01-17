@@ -9,6 +9,7 @@ import { Provider } from 'react-redux'
 import reduxStore from './redux/store'
 import Menu from './screens/Menu'
 import Checkout from './screens/Checkout'
+import Success from './screens/Success'
 
 const App = () => {
   const Stack = createNativeStackNavigator()
@@ -26,6 +27,7 @@ const App = () => {
           <Stack.Screen name='home' component={Home} />
           <Stack.Screen options={{ headerShown: true }} name='checkout' component={Checkout} />
           <Stack.Screen options={{ headerShown: true }} name='menu' component={Menu} />
+          <Stack.Screen name='success' component={Success} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
