@@ -1,8 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Card, Chip, Searchbar } from 'react-native-paper'
+import { FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
+import { ActivityIndicator, Card, Chip, Searchbar } from 'react-native-paper'
+import { useLazyMobileGetResturantQuery, useMobileGetResturantQuery } from '../redux/apis/customer.api'
+import { useNavigation } from '@react-navigation/native'
 
 const Food = () => {
+    const { navigate } = useNavigation()
+    const [getResturants, { data, isSuccess, isLoading, error, isError }] = useLazyMobileGetResturantQuery()
+
+    if (isError) {
+        console.log(error)
+    }
+    if (isSuccess) {
+        console.log(data)
+    }
+
+    useEffect(() => { getResturants() }, [])
+
+    if (isLoading) {
+        return <>
+            <ActivityIndicator></ActivityIndicator>
+        </>
+    }
     return (
         <View style={{ gap: 10 }}>
             <Searchbar
@@ -10,16 +29,24 @@ const Food = () => {
                 placeholder="Search For Dish or Resturant"
             />
 
-            <Card>
-                <Card.Content style={{ alignItems: 'center' }}>
-                    <Text variant="titleLarge">Dishes at Flat 50% Off</Text>
-                    <Text variant="bodyMedium">make the most of it now!</Text>
-                </Card.Content>
-                <Card.Cover source={{ uri: 'https://plus.unsplash.com/premium_photo-1673108852141-e8c3c22a4a22?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/700' }} />
-            </Card>
 
-            <Chip icon="heart" style={{ height: 50, padding: 5 }}>Your Hunger Partner</Chip>
-            <Chip icon="check" style={{ height: 50, padding: 5 }}>Good Food Within Minutes</Chip>
+            {
+                data && <FlatList
+                    refreshControl={<RefreshControl refreshing={isLoading} onRefresh={getResturants} />}
+                    data={data}
+                    keyExtractor={item => item._id}
+                    renderItem={({ item }) => <Pressable onPress={e => navigate("menu", { item })}>
+                        <Card style={{ margin: 20 }}>
+                            <Card.Cover source={{ uri: item.hero }} />
+                            <Card.Content>
+                                <Text>{item.name}</Text>
+                            </Card.Content>
+                        </Card>
+                    </Pressable>
+                    }
+                />
+            }
+
 
         </View>
     )

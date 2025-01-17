@@ -31,6 +31,24 @@ export const customerApi = createApi({
                 transformResponse: data => data.result
                 // invalidatesTags: ["info"]
             }),
+            mobileGetResturant: builder.query({
+                query: userData => {
+                    return {
+                        url: "/get-resturant",
+                        method: "GET",
+                    }
+                },
+                transformResponse: data => data.result
+            }),
+            mobileGetResturantMenu: builder.query({
+                query: rid => {
+                    return {
+                        url: "/get-resturant-menu/" + rid,
+                        method: "GET",
+                    }
+                },
+                transformResponse: data => data.result
+            }),
 
         }
     }
@@ -38,5 +56,9 @@ export const customerApi = createApi({
 
 export const {
     useMobileCustomerUpdateInfoMutation,
-    useMobileGetLocationMutation
+    useMobileGetLocationMutation,
+    useMobileGetResturantMenuQuery,
+    useMobileGetResturantQuery,
+    useLazyMobileGetResturantQuery,
+    useLazyMobileGetResturantMenuQuery
 } = customerApi
