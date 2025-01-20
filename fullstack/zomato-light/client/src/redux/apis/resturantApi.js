@@ -6,7 +6,7 @@ export const resturantApi = createApi({
         baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api/resturant`,
         credentials: "include"
     }),
-    tagTypes: ["info"],
+    tagTypes: ["info", "orders", "menu"],
     endpoints: (builder) => {
         return {
             resturantUpdateInfo: builder.mutation({
@@ -65,6 +65,27 @@ export const resturantApi = createApi({
                 invalidatesTags: ["menu"]
             }),
 
+            resturantGetOrders: builder.query({
+                query: resturantData => {
+                    return {
+                        url: "/get-orders",
+                        method: "GET",
+                    }
+                },
+                transformResponse: data => data.result,
+                providesTags: ["orders"]
+            }),
+            resturantChangeOrderStatus: builder.mutation({
+                query: resturantData => {
+                    return {
+                        url: "/change-status/" + resturantData._id,
+                        method: "PUT",
+                        body: resturantData
+                    }
+                },
+                invalidatesTags: ["orders"]
+            }),
+
         }
     }
 })
@@ -76,5 +97,8 @@ export const {
     useResturantDeleteMenuMutation,
     useResturantUpdateMenuMutation,
     useResturantGetMenuQuery,
-    useLazyResturantGetMenuQuery
+    useLazyResturantGetMenuQuery,
+
+    useLazyResturantGetOrdersQuery,
+    useResturantChangeOrderStatusMutation
 } = resturantApi

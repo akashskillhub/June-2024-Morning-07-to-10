@@ -20,6 +20,9 @@ const AdminNavbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
                         <Link to="/admin" className="nav-link active" >dashboard</Link>
+                        <Link to="/admin/resturants" className="nav-link">resturants</Link>
+                        <Link to="/admin/customers" className="nav-link">customers</Link>
+                        <Link to="/admin/orders" className="nav-link">orders</Link>
                     </div>
                 </div>
 

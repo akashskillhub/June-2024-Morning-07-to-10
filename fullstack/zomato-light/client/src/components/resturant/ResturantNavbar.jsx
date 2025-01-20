@@ -21,6 +21,7 @@ const ResturantNavbar = () => {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                     <Link to="/resturant" className="nav-link active" >dashboard</Link>
+                    <Link to="/resturant/orders" className="nav-link active" >orders</Link>
                 </div>
             </div>
 

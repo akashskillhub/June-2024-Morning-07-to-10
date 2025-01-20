@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { customerApi } from "../apis/customer.api";
 
 const cartSlice = createSlice({
     name: "cartSlice",
@@ -32,6 +33,9 @@ const cartSlice = createSlice({
         }
     },
     extraReducers: builder => builder
+        .addMatcher(customerApi.endpoints.mobilePlaceOrder.matchFulfilled, (state, { payload }) => {
+            state.cart = []
+        })
 })
 
 export const { addToCart, emptyCart, removeFromCart, decCartQty, incCartQty } = cartSlice.actions

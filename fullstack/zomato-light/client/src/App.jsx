@@ -8,9 +8,14 @@ import "react-toastify/ReactToastify.css"
 import AdminProtected from "./components/share/AdminProtected"
 import ResturantProtected from "./components/share/ResturantProtected"
 
+const Resturants = lazy(() => import("./pages/admin/Resturant"))
+const Customers = lazy(() => import("./pages/admin/Customers"))
+const Orders = lazy(() => import("./pages/admin/Orders"))
+
 const Home = lazy(() => import("./pages/public/Home"))
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"))
 const ResturantDashboard = lazy(() => import("./pages/restuarant/ResturantDashboard"))
+const ResturantOrders = lazy(() => import("./pages/restuarant/ResturantOrders"))
 
 const AdminLayout = lazy(() => import("./components/admin/AdminLayout"))
 const ResturantLayout = lazy(() => import("./components/resturant/ResturantLayout"))
@@ -28,10 +33,14 @@ const App = () => {
     { path: "login-admin", element: <AdminLogin /> }
   ]
   const adminRoutes = [
-    { isIndex: true, path: "/", element: <Dashboard /> }
+    { isIndex: true, path: "/", element: <Dashboard /> },
+    { isIndex: false, path: "resturants", element: <Resturants /> },
+    { isIndex: false, path: "customers", element: <Customers /> },
+    { isIndex: false, path: "orders", element: <Orders /> },
   ]
   const resturantRoutes = [
-    { isIndex: true, path: "/", element: <ResturantDashboard /> }
+    { isIndex: true, path: "/", element: <ResturantDashboard /> },
+    { isIndex: false, path: "orders", element: <ResturantOrders /> }
   ]
 
   return <>
