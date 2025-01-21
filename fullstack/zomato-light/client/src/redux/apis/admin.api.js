@@ -45,7 +45,7 @@ export const adminApi = createApi({
                     return {
                         url: "/register-rider",
                         method: "POST",
-                        body: riderData.fd
+                        body: riderData
                     }
                 },
                 invalidatesTags: ["rider"]
@@ -74,6 +74,17 @@ export const adminApi = createApi({
                 invalidatesTags: ["rider"]
             }),
 
+            adminUpdateRiderAccount: builder.mutation({
+                query: riderData => {
+                    return {
+                        url: "/update-rider-account/" + riderData._id,
+                        method: "PUT",
+                        body: riderData
+                    }
+                },
+                invalidatesTags: ["rider"]
+            }),
+
         }
     }
 })
@@ -85,5 +96,6 @@ export const {
 
     useRiderRegisterAdminMutation,
     useLazyAdminGetRiderQuery,
-    useAdminUpdateRiderMutation
+    useAdminUpdateRiderMutation,
+    useAdminUpdateRiderAccountMutation
 } = adminApi

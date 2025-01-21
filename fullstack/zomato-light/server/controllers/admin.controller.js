@@ -2,8 +2,12 @@ const Customer = require("../models/Customer")
 const Order = require("../models/Order")
 const Resturant = require("../models/Resturant")
 const asyncHandler = require("express-async-handler")
+
 const Rider = require("../models/Rider")
 const { riderUpload } = require("../utils/upload")
+const { checkEmpty } = require("../utils/checkEmpty")
+const bcrypt = require("bcryptjs")
+const cloud = require("./../utils/cloudinary")
 
 
 exports.getAdminResturant = asyncHandler(async (req, res) => {
@@ -44,10 +48,6 @@ exports.getAdminOrder = asyncHandler(async (req, res) => {
 })
 
 
-// register rider
-// get riders with pagination
-// update rider
-
 exports.registerAdminRider = asyncHandler(async (req, res) => {
     riderUpload(req, res, async (err) => {
         if (err) {
@@ -59,7 +59,7 @@ exports.registerAdminRider = asyncHandler(async (req, res) => {
         if (isError) {
             return res.status(400).json({ message: "all fileds required", error })
         }
-        const result = await Resturant.findOne({ email })
+        const result = await Rider.findOne({ email })
         if (result) {
             return res.status(409).json({ message: "email already registered" })
         }
@@ -134,4 +134,9 @@ exports.updateAdminRider = asyncHandler(async (req, res) => {
             res.json({ message: "rider update success" })
         }
     })
+})
+exports.updateRiderAccount = asyncHandler(async (req, res) => {
+    const { rid } = req.params
+    await Rider.findByIdAndUpdate(rid, { isActive: req.body.isActive })
+    res.json({ message: "rider account update" })
 })

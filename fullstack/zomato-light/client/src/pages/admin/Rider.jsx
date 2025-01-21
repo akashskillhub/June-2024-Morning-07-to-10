@@ -2,11 +2,17 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import React, { useEffect, useState } from 'react'
 import { handleClasses } from '../../utils/handleClasses'
-// import { useAdminUpdateRiderMutation, useLazyAdminGetRiderQuery, useRiderRegisterAdminMutation } from '../../redux/apis/adminApi'
 import { toast } from 'react-toastify'
-import { useAdminUpdateRiderMutation, useLazyAdminGetRiderQuery, useRiderRegisterAdminMutation } from '../../redux/apis/admin.api'
+import {
+    useAdminUpdateRiderAccountMutation,
+    useAdminUpdateRiderMutation,
+    useLazyAdminGetRiderQuery,
+    useRiderRegisterAdminMutation
+} from '../../redux/apis/admin.api'
 
+import { format } from "date-fns"
 const Rider = () => {
+    const [updateAccount, { isSuccess: accountUpdateSuccess }] = useAdminUpdateRiderAccountMutation()
     const [show, setShow] = useState(true)
     const [pagi, setPagi] = useState({ limit: 2, skip: 0 })
     const [selectedRider, setSelectedRider] = useState()
@@ -27,6 +33,12 @@ const Rider = () => {
             toast.success("update rider success")
         }
     }, [updateRiderIsSuccess])
+
+    useEffect(() => {
+        if (accountUpdateSuccess) {
+            toast.success("Account update  success")
+        }
+    }, [accountUpdateSuccess])
 
 
     useEffect(() => { getRider(pagi) }, [pagi])
@@ -69,16 +81,14 @@ const Rider = () => {
     const RiderFormik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            name: selectedRider ? selectedRider.type : "",
-            email: selectedRider ? selectedRider.category : "",
-            mobile: selectedRider ? selectedRider.name : "",
-            address: selectedRider ? selectedRider.price : "",
-            city: selectedRider ? selectedRider.desc : "",
-            dob: selectedRider ? selectedRider.desc : "",
-            gender: selectedRider ? selectedRider.desc : "",
-            profile: selectedRider ? selectedRider.desc : "",
-            rc: "",
-            licence: "",
+            name: selectedRider ? selectedRider.name : "",
+            email: selectedRider ? selectedRider.email : "",
+            mobile: selectedRider ? selectedRider.mobile : "",
+            address: selectedRider ? selectedRider.address : "",
+            city: selectedRider ? selectedRider.city : "",
+            dob: selectedRider ? format(selectedRider.dob, "yyyy-MM-dd") : "",
+            gender: selectedRider ? selectedRider.gender : "",
+            profile: selectedRider ? selectedRider.profile : "",
         },
         validationSchema: yup.object({
             name: yup.string().required("Enter type"),
@@ -89,8 +99,6 @@ const Rider = () => {
             dob: yup.string().required("Enter desc"),
             gender: yup.string().required("Enter desc"),
             profile: yup.string().required("Enter desc"),
-            rc: yup.string(),
-            licence: yup.string(),
         }),
         onSubmit: (values, { resetForm }) => {
             const fd = new FormData()
@@ -294,27 +302,38 @@ const Rider = () => {
                                     <th>rc</th>
                                     <th>profile</th>
                                     <th>action</th>
+                                    <th>isActive</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    data.rider.map(item => <tr key={item._id}>
+                                    data.rider.map(item => <tr
+                                        className={`${item.isActive ? "table-success" : "table-danger"}`}
+                                        key={item._id}>
                                         <td>{item.name}</td>
                                         <td>{item.email}</td>
                                         <td>{item.mobile}</td>
                                         <td>{item.address}</td>
                                         <td>{item.city}</td>
-                                        <td>{item.dob}</td>
+                                        <td>{format(item.dob, "yyyy-MM-dd")}</td>
                                         <td>{item.gender}</td>
                                         <td>
-                                            <img src={item.licence} height={100} alt="" />
+                                            <img src={item.licence} height={50} alt="" />
                                         </td>
                                         <td>
-                                            <img src={item.rc} height={100} alt="" />
+                                            <img src={item.rc} height={50} alt="" />
                                         </td>
                                         <td>{item.profile}</td>
                                         <td>
                                             <button onClick={e => setSelectedRider(item)} data-bs-toggle="modal" data-bs-target="#editRider" type="button" class="btn btn-sm btn-outline-warning">EDIT</button>
+                                        </td>
+                                        <td>
+                                            <select
+                                                onChange={e => updateAccount({ _id: item._id, isActive: e.target.value })}
+                                                value={item.isActive} className='form-control'>
+                                                <option value={true}>Active</option>
+                                                <option value={false}>In Active</option>
+                                            </select>
                                         </td>
                                     </tr>)
                                 }
@@ -438,9 +457,9 @@ const Rider = () => {
                                 </div>
 
                             </div>
+                            <button type='submit' className='btn btn-sm w-100 btn-warning'>Update Rider</button>
                         </form>
                     </div>
-                    <button type='submit' className='btn btn-sm w-100 btn-warning'>Update Rider</button>
                 </div>
             </div>
         </div>
