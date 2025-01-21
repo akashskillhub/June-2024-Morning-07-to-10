@@ -9,7 +9,7 @@ const riderSchema = new mongoose.Schema({
     address: { type: String, required: true },
     city: { type: String, required: true },
     gender: { type: String, enum: ["male", "female"], required: true },
-    isActive: { type: Boolean, default: false, required: true },
+    isActive: { type: Boolean, default: false },
     licence: { type: String, required: true },
     rc: { type: String, required: true },
     dob: { type: Date, required: true },
@@ -17,3 +17,4 @@ const riderSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 module.exports = mongoose.model("rider", riderSchema)
+

@@ -1,68 +1,81 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import { useLazyAdminGetOrderQuery, useLazyAdminGetResturantQuery } from '../../redux/apis/adminApi'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { useLazyAdminGetOrderQuery } from '../../redux/apis/admin.api'
 
 const Orders = () => {
+    const [pagi, setPagi] = useState({ limit: 2, skip: 0 })
     const [getOrder, { isLoading, isError, isSuccess, error, data }] = useLazyAdminGetOrderQuery()
 
     if (isLoading) {
         <div>Please wait.... <div class="spinner-border text-primary"></div></div>
     }
-
-
-
-    useEffect(() => { getOrder() }, [])
-
-
-
+    // body
+    // params
+    // query params ?limit=5&skip=0
+    // headers
+    useEffect(() => { getOrder(pagi) }, [pagi])
     return <div className=' container'>
+        <div className="row">
+            <div className="col-sm-4">
+                <select
+                    className="form-select my-3"
+                    value={pagi.limit}
+                    onChange={e => setPagi({ limit: e.target.value, skip: 0 })}>
+                    <option value="2">2</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                </select>
+            </div>
+        </div>
         <div className="table-responsive">
-
             {
                 data && <table className="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
                             <th>Customer Name</th>
-                            <th>Customer Email</th>
                             <th>Customer Mobile</th>
                             <th>Resturant Name</th>
-                            <th>Resturant Email</th>
                             <th>Resturant Mobile</th>
-                            <th>Dish Name</th>
-                            <th>Dish Price</th>
-                            <th>Dish Type</th>
-                            <th>Dish Qty</th>
+                            <th>Dish</th>
                             <th>Order Status</th>
 
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            data.result.map(order => (
-                                order.items.map(item => <tr key={item._id}>
-                                    <td>{order.customer.name}</td>
-                                    <td>{order.customer.email}</td>
-                                    <td>{order.customer.mobile}</td>
-                                    <td>{order.resturant.name}</td>
-                                    <td>{order.resturant.email}</td>
-                                    <td>{order.resturant.mobile}</td>
-                                    <td>{item.dish.name}</td>
-                                    <td>{item.dish.price}</td>
-                                    <td>{item.dish.type}</td>
-                                    <td>{item.qty}</td>
-                                    <td>{order.status}</td>
-                                </tr>
-                                )
-                            )
-                            )
+                            data.orders.map(item => <tr key={item._id}>
+                                <td>{item.customer.name}</td>
+                                <td>{item.customer.mobile}</td>
+                                <td>{item.resturant.name}</td>
+                                <td>{item.resturant.mobile}</td>
+                                <td>
+                                    {
+                                        item.items.map(d => <div key={d._id}>
+                                            <div className='d-block' >{d.qty} x {d.dish.name} x {d.dish.price}</div>
+                                        </div>)
+                                    }
+                                </td>
+                                <td>{item.status}</td>
+
+                            </tr>)
                         }
+
                     </tbody>
                 </table>
             }
+            {
+                data && [...Array(Math.ceil(data.total / pagi.limit))].map((item, index) => <button
+                    type="button"
+                    onClick={e => setPagi({ ...pagi, skip: index * pagi.limit })}
+                    className={`btn btn-sm me-1  ${index * pagi.limit === pagi.skip ? "btn-primary" : "btn-outline-primary"}`}>
+                    {index}
+                </button>)
+            }
         </div>
-    </div>
+    </div >
 }
 
 export default Orders

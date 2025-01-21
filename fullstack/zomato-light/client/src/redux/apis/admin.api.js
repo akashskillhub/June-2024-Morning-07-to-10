@@ -30,12 +30,14 @@ export const adminApi = createApi({
             }),
 
             adminGetOrder: builder.query({
-                query: () => {
+                query: pagiData => {
                     return {
                         url: "/get-order",
-                        method: "GET"
+                        method: "GET",
+                        params: pagiData
                     }
                 },
+                transformResponse: data => data.result,
                 providesTags: ["info"]
             }),
 

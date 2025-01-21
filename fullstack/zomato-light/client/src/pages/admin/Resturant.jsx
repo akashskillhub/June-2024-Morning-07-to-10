@@ -1,7 +1,5 @@
 import React from 'react'
-// import { useLazyAdminGetResturantQuery } from '../../redux/apis/adminApi'
 import { useEffect } from 'react'
-import { toast } from 'react-toastify'
 import { useLazyAdminGetResturantQuery } from '../../redux/apis/admin.api'
 
 const Resturants = () => {

@@ -11,6 +11,7 @@ import ResturantProtected from "./components/share/ResturantProtected"
 const Resturants = lazy(() => import("./pages/admin/Resturant"))
 const Customers = lazy(() => import("./pages/admin/Customers"))
 const Orders = lazy(() => import("./pages/admin/Orders"))
+const Rider = lazy(() => import("./pages/admin/Rider"))
 
 const Home = lazy(() => import("./pages/public/Home"))
 const Dashboard = lazy(() => import("./pages/admin/Dashboard"))
@@ -37,6 +38,7 @@ const App = () => {
     { isIndex: false, path: "resturants", element: <Resturants /> },
     { isIndex: false, path: "customers", element: <Customers /> },
     { isIndex: false, path: "orders", element: <Orders /> },
+    { isIndex: false, path: "riders", element: <Rider /> },
   ]
   const resturantRoutes = [
     { isIndex: true, path: "/", element: <ResturantDashboard /> },

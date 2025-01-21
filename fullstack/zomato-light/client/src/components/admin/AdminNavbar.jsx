@@ -23,6 +23,7 @@ const AdminNavbar = () => {
                         <Link to="/admin/resturants" className="nav-link">resturants</Link>
                         <Link to="/admin/customers" className="nav-link">customers</Link>
                         <Link to="/admin/orders" className="nav-link">orders</Link>
+                        <Link to="/admin/riders" className="nav-link">riders</Link>
                     </div>
                 </div>
 

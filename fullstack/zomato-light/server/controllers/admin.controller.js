@@ -21,12 +21,27 @@ exports.getAdminCustomer = asyncHandler(async (req, res) => {
 })
 
 exports.getAdminOrder = asyncHandler(async (req, res) => {
+    const { limit, skip } = req.query
+    const total = await Order.countDocuments()
     const result = await Order
-        .find(req.body)
+        .find()
         .select(" -createdAt -updatedAt -__v -_id")
         .populate("resturant", "name email mobile")
         .populate("customer", "name email mobile")
         .populate("items.dish", "name type price")
         .sort({ createdAt: -1 })
-    res.json({ message: "order fetch success", result })
+        .limit(limit)
+        .skip(skip)
+
+    res.json({
+        message: "order fetch success", result: {
+            orders: result,
+            total
+        }
+    })
 })
+
+
+// register rider
+// get riders with pagination
+// update rider
