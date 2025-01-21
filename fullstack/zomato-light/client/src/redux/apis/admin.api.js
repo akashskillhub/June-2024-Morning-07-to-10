@@ -40,7 +40,39 @@ export const adminApi = createApi({
                 transformResponse: data => data.result,
                 providesTags: ["info"]
             }),
+            riderRegisterAdmin: builder.mutation({
+                query: riderData => {
+                    return {
+                        url: "/register-rider",
+                        method: "POST",
+                        body: riderData.fd
+                    }
+                },
+                invalidatesTags: ["rider"]
+            }),
 
+            adminGetRider: builder.query({
+                query: riderPagiData => {
+                    return {
+                        url: "/get-rider",
+                        method: "GET",
+                        params: riderPagiData
+                    }
+                },
+                transformResponse: data => data.result,
+                providesTags: ["rider"]
+            }),
+
+            adminUpdateRider: builder.mutation({
+                query: riderData => {
+                    return {
+                        url: "/update-Rider/" + riderData._id,
+                        method: "PUT",
+                        body: riderData.fd
+                    }
+                },
+                invalidatesTags: ["rider"]
+            }),
 
         }
     }
@@ -49,6 +81,9 @@ export const adminApi = createApi({
 export const {
     useLazyAdminGetCustomerQuery,
     useLazyAdminGetResturantQuery,
-    useLazyAdminGetOrderQuery
+    useLazyAdminGetOrderQuery,
 
+    useRiderRegisterAdminMutation,
+    useLazyAdminGetRiderQuery,
+    useAdminUpdateRiderMutation
 } = adminApi
