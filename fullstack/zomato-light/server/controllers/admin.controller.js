@@ -31,7 +31,8 @@ exports.getAdminOrder = asyncHandler(async (req, res) => {
     const total = await Order.countDocuments()
     const result = await Order
         .find()
-        .select(" -createdAt -updatedAt -__v -_id")
+        .select(" -createdAt -updatedAt -__v ")
+        .populate("rider", "name mobile")
         .populate("resturant", "name email mobile")
         .populate("customer", "name email mobile")
         .populate("items.dish", "name type price")
@@ -139,4 +140,16 @@ exports.updateRiderAccount = asyncHandler(async (req, res) => {
     const { rid } = req.params
     await Rider.findByIdAndUpdate(rid, { isActive: req.body.isActive })
     res.json({ message: "rider account update" })
+})
+
+exports.getAdminActiveRider = asyncHandler(async (req, res) => {
+    const result = await Rider
+        .find({ isActive: true })
+        .select("-password -createdAt -updatedAt -__v")
+    res.json({ message: "rider fetch success", result })
+})
+exports.assignRider = asyncHandler(async (req, res) => {
+    const { oid } = req.params
+    await Order.findByIdAndUpdate(oid, { rider: req.body.rider })
+    res.json({ message: "rider asiign  success" })
 })

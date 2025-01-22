@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { riderAuthApi } from "./rider-auth.api";
 
-const riderAuthSlice = createSlice({
+const riderAuthSlice= createSlice({
     name: "riderAuthSlice",
     initialState: {},
     reducers: {
-        setLocalData: (state, { payload }) => {
+        setLocalData:(state,{payload}) => {
             state.rider = payload
         }
     },
@@ -16,7 +16,7 @@ const riderAuthSlice = createSlice({
         .addMatcher(riderAuthApi.endpoints.mobileRiderLogout.matchFulfilled, (state, { payload }) => {
             state.rider = null
         })
-
+       
 })
 
 export const { setLocalData } = riderAuthSlice.actions

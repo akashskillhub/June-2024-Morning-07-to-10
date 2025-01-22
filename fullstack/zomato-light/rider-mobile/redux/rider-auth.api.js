@@ -6,31 +6,36 @@ export const riderAuthApi = createApi({
         baseUrl: `${process.env.EXPO_PUBLIC_BACKEND_URL}/auth`,
         credentials: "include"
     }),
+    tagTypes:["rider"],
     endpoints: (builder) => {
         return {
             mobileRiderLogin: builder.mutation({
-                query: userData => {
+                query: riderData => {
                     return {
                         url: "/login-rider",
                         method: "POST",
-                        body: userData
+                        body: riderData
                     }
                 },
                 transformResponse: data => data.result
+
             }),
+
             mobileRiderLogout: builder.mutation({
-                query: userData => {
+                query: () => {
                     return {
                         url: "/logout-rider",
                         method: "POST",
                     }
                 },
             }),
+
+
         }
     }
 })
 
 export const {
-    useMobileRiderLoginMutation,
-    useMobileRiderLogoutMutation
+   useMobileRiderLoginMutation,
+   useMobileRiderLogoutMutation
 } = riderAuthApi

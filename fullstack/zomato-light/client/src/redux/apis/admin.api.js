@@ -85,6 +85,26 @@ export const adminApi = createApi({
                 invalidatesTags: ["rider"]
             }),
 
+            adminGetActiveRider: builder.query({
+                query: () => {
+                    return {
+                        url: "/get-active-rider",
+                        method: "GET",
+                    }
+                },
+                providesTags: ["assign-order"]
+            }),
+
+            adminAssignRider: builder.mutation({
+                query: orderData => {
+                    return {
+                        url: "/assign-rider/" + orderData._id,
+                        method: "PUT",
+                        body: orderData
+                    }
+                },
+                invalidatesTags: ["assign-order"]
+            }),
         }
     }
 })
@@ -97,5 +117,9 @@ export const {
     useRiderRegisterAdminMutation,
     useLazyAdminGetRiderQuery,
     useAdminUpdateRiderMutation,
-    useAdminUpdateRiderAccountMutation
+    useAdminUpdateRiderAccountMutation,
+    useAdminGetRiderQuery,
+    useAdminGetActiveRiderQuery,
+
+    useAdminAssignRiderMutation
 } = adminApi

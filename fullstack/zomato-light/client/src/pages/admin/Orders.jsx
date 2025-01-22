@@ -2,19 +2,22 @@ import React, { useState } from 'react'
 // import { useLazyAdminGetOrderQuery, useLazyAdminGetResturantQuery } from '../../redux/apis/adminApi'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
-import { useLazyAdminGetOrderQuery } from '../../redux/apis/admin.api'
+import { useAdminAssignRiderMutation, useAdminGetActiveRiderQuery, useAdminGetRiderQuery, useLazyAdminGetOrderQuery } from '../../redux/apis/admin.api'
 
 const Orders = () => {
+    const [assignRider, { isSuccess: assignSuccess }] = useAdminAssignRiderMutation()
+    const { data: riderData } = useAdminGetActiveRiderQuery()
     const [pagi, setPagi] = useState({ limit: 2, skip: 0 })
     const [getOrder, { isLoading, isError, isSuccess, error, data }] = useLazyAdminGetOrderQuery()
 
     if (isLoading) {
         <div>Please wait.... <div class="spinner-border text-primary"></div></div>
     }
-    // body
-    // params
-    // query params ?limit=5&skip=0
-    // headers
+    useEffect(() => {
+        if (assignSuccess) {
+            toast.success("rider assign success")
+        }
+    }, [assignSuccess])
     useEffect(() => { getOrder(pagi) }, [pagi])
     return <div className=' container'>
         <div className="row">
@@ -41,6 +44,7 @@ const Orders = () => {
                             <th>Resturant Mobile</th>
                             <th>Dish</th>
                             <th>Order Status</th>
+                            <th>Rider</th>
 
                         </tr>
                     </thead>
@@ -59,6 +63,24 @@ const Orders = () => {
                                     }
                                 </td>
                                 <td>{item.status}</td>
+                                <td>
+                                    {
+                                        item.rider
+                                            ? <>
+                                                <div> <strong>{item.rider.name}</strong> </div>
+                                                <div> <strong>{item.rider.mobile}</strong> </div>
+                                            </>
+                                            : <select onChange={e => assignRider({ _id: item._id, rider: e.target.value })} className="form-select">
+                                                <option selected>Choose Rider</option>
+                                                {
+                                                    riderData && riderData.result.map(item => <option key={item._id} value={item._id}>
+                                                        {item.name}
+                                                    </option>)
+                                                }
+                                            </select>
+                                    }
+
+                                </td>
 
                             </tr>)
                         }

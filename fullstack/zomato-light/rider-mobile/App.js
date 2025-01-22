@@ -1,16 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet } from 'react-native'
 import React from 'react'
-import { PaperProvider } from 'react-native-paper'
-import Login from './screens/Login'
+import { Appbar, PaperProvider } from 'react-native-paper'
+import riderReduxStore from './redux/store'
 import { Provider } from 'react-redux'
-import riderReduxStore from './redux/riderStore'
+import Login from './screnns/Login'
+import Home from './screnns/Home'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 const App = () => {
-  return <Provider store={riderReduxStore}>
-    <PaperProvider>
-      <Login />
-    </PaperProvider>
+  const Stack = createNativeStackNavigator()
+  return <Provider store={riderReduxStore} >
+  <PaperProvider>
+  <StatusBar hidden/>
+    <Appbar.Header style={{backgroundColor:"red"}} >
+    <Appbar.Content color='white' title="Zomato Lite" />
+  </Appbar.Header>
+
+    <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name='login' component={Login} />
+          <Stack.Screen name='home' component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
+  </PaperProvider>
   </Provider>
+  
 }
 
 export default App
