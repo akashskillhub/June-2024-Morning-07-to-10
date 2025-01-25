@@ -1,9 +1,12 @@
 import { FlatList, RefreshControl, StyleSheet, View, } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLazyRiderGetOrdersQuery, useRiderUpdateOrderStatusMutation } from '../redux/rider.api'
 import { ActivityIndicator, Button, Card, Text } from 'react-native-paper'
+import { socket } from '../App'
 
 const Booking = () => {
+  // const [riderBookings, setRiderBookings] = useState([])
+
   const [updateStatus, {
     isSuccess: updateSuccess,
     isError: updateIsError,
@@ -13,18 +16,33 @@ const Booking = () => {
   const [getOrders, { isLoading, data, isSuccess, isError, error }] = useLazyRiderGetOrdersQuery()
 
   if (updateIsError) {
-    console.log(updateError);
+    // console.log(updateError);
   }
   if (updateSuccess) {
-    console.log("update");
+    // console.log("update");
   }
   if (isError) {
-    console.log(error)
+    // console.log(error)
   }
   if (isSuccess) {
-    console.log(data)
+    // console.log(data)
   }
   useEffect(() => { getOrders() }, [])
+
+  // useEffect(() => {
+  socket.on("rider-orders", data => {
+    getOrders()
+    // console.log(data)
+
+    // setRiderBookings(data)
+  })
+  // }, [])
+
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     setRiderBookings(data)
+  //   }
+  // }, [isSuccess])
 
   return <>
     {

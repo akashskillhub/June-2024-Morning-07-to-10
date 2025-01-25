@@ -10,6 +10,8 @@ import reduxStore from './redux/store'
 import Menu from './screens/Menu'
 import Checkout from './screens/Checkout'
 import Success from './screens/Success'
+import { io } from 'socket.io-client'
+export const socket = io("https://zomato-lite-yfnq.onrender.com")
 
 const App = () => {
   const Stack = createNativeStackNavigator()

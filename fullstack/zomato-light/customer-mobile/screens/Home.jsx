@@ -41,12 +41,6 @@ const Home = () => {
                 component={Orders} />
             <Tab.Screen
                 options={{
-                    tabBarIcon: () => <MaterialIcons name="delivery-dining" size={24} color="black" />
-                }}
-                name="Delivery"
-                component={Delivery} />
-            <Tab.Screen
-                options={{
                     tabBarIcon: () => <FontAwesome name="history" size={24} color="black" />
                 }}
                 name="History"

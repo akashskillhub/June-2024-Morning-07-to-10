@@ -58,6 +58,15 @@ export const customerApi = createApi({
                 },
                 transformResponse: data => data.result
             }),
+            mobileGetOrderHistory: builder.query({
+                query: () => {
+                    return {
+                        url: "/get-order-history",
+                        method: "GET",
+                    }
+                },
+                transformResponse: data => data.result
+            }),
             mobilePlaceOrder: builder.mutation({
                 query: orderData => {
                     return {
@@ -80,5 +89,6 @@ export const {
     useLazyMobileGetResturantQuery,
     useLazyMobileGetResturantMenuQuery,
     useLazyMobileGetOrdersQuery,
-    useMobilePlaceOrderMutation
+    useMobilePlaceOrderMutation,
+    useLazyMobileGetOrderHistoryQuery
 } = customerApi

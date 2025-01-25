@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { useAdminAssignRiderMutation, useAdminGetActiveRiderQuery, useAdminGetRiderQuery, useLazyAdminGetOrderQuery } from '../../redux/apis/admin.api'
+import { socket } from '../../App'
 
 const Orders = () => {
     const [assignRider, { isSuccess: assignSuccess }] = useAdminAssignRiderMutation()
@@ -13,6 +14,12 @@ const Orders = () => {
     if (isLoading) {
         <div>Please wait.... <div class="spinner-border text-primary"></div></div>
     }
+    socket.on("place-order", data => {
+        getOrder(pagi)
+    })
+    socket.on("status-update", data => {
+        getOrder(pagi)
+    })
     useEffect(() => {
         if (assignSuccess) {
             toast.success("rider assign success")

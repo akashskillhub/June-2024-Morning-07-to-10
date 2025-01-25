@@ -2,17 +2,28 @@ import { FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import { useLazyMobileGetOrdersQuery } from '../redux/apis/customer.api'
 import { Card } from 'react-native-paper'
+import { socket } from '../App'
 
 const Orders = () => {
     const [getOrders, { isLoading, data, isSuccess, isError, error }] = useLazyMobileGetOrdersQuery()
 
     if (isSuccess) {
-        console.log(data);
+        // console.log(data);
     }
     if (isError) {
-        console.log(error);
+        // console.log(error);
     }
     useEffect(() => { getOrders() }, [])
+    useEffect(() => {
+        socket.on("rider-orders", () => {
+            getOrders()
+        })
+
+        socket.on("status-update", data => {
+            getOrders()
+        })
+    }, [])
+
     return <>
 
         {
@@ -36,6 +47,12 @@ const Orders = () => {
                             <Text>{item.status}</Text>
                             <Text>{item.items.reduce((sum, d) => sum + (d.qty * d.dish.price), 0)}</Text>
                         </View>
+                        {
+                            item.rider && <View style={{ flexDirection: "row", justifyContent: "space-between", marginVertical: 10 }}>
+                                <Text>{item.rider.name}</Text>
+                                <Text>{item.rider.mobile}</Text>
+                            </View>
+                        }
                     </Card.Content>
                 </Card>}
             />

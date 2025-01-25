@@ -8,6 +8,7 @@ const { riderUpload } = require("../utils/upload")
 const { checkEmpty } = require("../utils/checkEmpty")
 const bcrypt = require("bcryptjs")
 const cloud = require("./../utils/cloudinary")
+const { io } = require("../socket/socket")
 
 
 exports.getAdminResturant = asyncHandler(async (req, res) => {
@@ -138,7 +139,11 @@ exports.updateAdminRider = asyncHandler(async (req, res) => {
 })
 exports.updateRiderAccount = asyncHandler(async (req, res) => {
     const { rid } = req.params
-    await Rider.findByIdAndUpdate(rid, { isActive: req.body.isActive })
+    const result = await Rider.findByIdAndUpdate(rid, { isActive: req.body.isActive }, { new: true })
+    // if (!req.body.isActive) { // "false"
+    if (!result.isActive) {
+        io.emit("rider-logout")
+    }
     res.json({ message: "rider account update" })
 })
 
@@ -151,5 +156,6 @@ exports.getAdminActiveRider = asyncHandler(async (req, res) => {
 exports.assignRider = asyncHandler(async (req, res) => {
     const { oid } = req.params
     await Order.findByIdAndUpdate(oid, { rider: req.body.rider })
+    io.emit("rider-orders")
     res.json({ message: "rider asiign  success" })
 })

@@ -2,11 +2,15 @@ import React from 'react'
 import { useLazyResturantGetOrdersQuery, useResturantChangeOrderStatusMutation } from '../../redux/apis/resturantApi'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
-
+import { socket } from '../../App'
 const ResturantOrders = () => {
     const [changeStatus, { isSuccess: changeSuccess, isLoading: changeLoading }] = useResturantChangeOrderStatusMutation()
     const [getOrders, { data, isLoading }] = useLazyResturantGetOrdersQuery()
-
+    useEffect(() => {
+        socket.on("place-order", data => {
+            getOrders()
+        })
+    }, [])
     useEffect(() => { getOrders() }, [])
     useEffect(() => {
         if (changeSuccess) {

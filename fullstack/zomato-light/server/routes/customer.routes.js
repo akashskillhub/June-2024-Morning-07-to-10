@@ -1,4 +1,4 @@
-const { getLocation, updateCustomerInfo, getResturants, getResturantMenu, placeOrder, getOrders } = require("../controllers/customer.controllers")
+const { getLocation, updateCustomerInfo, getResturants, getResturantMenu, placeOrder, getOrders, getHistory } = require("../controllers/customer.controllers")
 
 const router = require("express").Router()
 
@@ -9,6 +9,7 @@ router
     .get("/get-resturant-menu/:rid", getResturantMenu)
     .post("/place-order", placeOrder)
     .get("/get-orders", getOrders)
+    .get("/get-order-history", getHistory)
 
 
 module.exports = router

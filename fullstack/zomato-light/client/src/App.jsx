@@ -25,6 +25,8 @@ const PublicLayout = lazy(() => import("./components/public/PublicLayout"))
 const Login = lazy(() => import("./pages/public/Login"))
 const AdminLogin = lazy(() => import("./pages/public/AdminLogin"))
 const RegisterResturant = lazy(() => import("./pages/public/RegisterResturant"))
+import { io } from 'socket.io-client'
+export const socket = io(import.meta.env.VITE_BACKEND_URL)
 
 const App = () => {
   const publicRoutes = [
@@ -46,6 +48,10 @@ const App = () => {
   ]
 
   return <>
+    {
+      import.meta.env.VITE_ENV === "dev" && <div className="position-fixed bottom-0 start-0 bg-danger">{import.meta.env.VITE_BACKEND_URL}</div>
+    }
+
     <ToastContainer />
     <BrowserRouter>
       <Routes>

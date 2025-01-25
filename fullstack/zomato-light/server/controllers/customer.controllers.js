@@ -5,6 +5,7 @@ const Customer = require("../models/Customer")
 const Resturant = require("../models/Resturant")
 const Menu = require("../models/Menu")
 const Order = require("../models/Order")
+const { io } = require("./../socket/socket")
 exports.getLocation = asyncHandler(async (req, res) => {
     const { latitude, longitude } = req.body
     const { isError, error } = checkEmpty({ latitude, longitude })
@@ -62,13 +63,25 @@ exports.placeOrder = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "all fields required", error })
     }
     await Order.create({ resturant, items, customer: req.user })
+    io.emit("place-order")
     res.json({ message: "order place sucess" })
 })
 exports.getOrders = asyncHandler(async (req, res) => {
     const result = await Order
-        .find({ customer: req.user })
+        .find({ customer: req.user, status: { $ne: "delivered" } })
         .select("-customer -createdAt -updatedAt -__v")
-        .populate("resturant", "name hero") // joins
+        .populate("rider", "name mobile")
+        .populate("resturant", "name hero")
+        .populate("items.dish", "name type image price")
+        .sort({ createdAt: -1 })
+    res.json({ message: "order fetch sucess", result })
+})
+exports.getHistory = asyncHandler(async (req, res) => {
+    const result = await Order
+        .find({ customer: req.user, status: "delivered" })
+        .select("-customer -createdAt -updatedAt -__v")
+        .populate("rider", "name mobile")
+        .populate("resturant", "name hero")
         .populate("items.dish", "name type image price")
         .sort({ createdAt: -1 })
     res.json({ message: "order fetch sucess", result })
