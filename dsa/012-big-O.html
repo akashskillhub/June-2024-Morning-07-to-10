@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // const show = (arr) => {
+        //     for (let i = 0; i < arr.length; i++) {
+        //         console.log(i)
+        //     }
+        // }
+        // show([10, 20, 30, 40, 50, 60]) // O(n)
+        const show = (num) => {
+            for (let i = 0; i < num; i++) {
+                // i = 1
+                for (let j = 0; j < num; j++) {
+                    console.log(i, j) // 100 
+                }
+            }
+
+        }
+        show(5) // n^2
+
+
+        const sum = (n) => {
+            return n + n
+        }
+
+        sum(1000) // O(1)
+
+    </script>
+
+</body>
+
+</html>

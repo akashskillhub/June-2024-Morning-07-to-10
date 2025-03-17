@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const fibbo = (num) => {
+            const arr = [0, 1]
+            for (let i = 2; arr.length < num; i++) {
+                arr[i] = arr[i - 1] + arr[i - 2]
+            }
+            return arr
+        }
+        console.log(fibbo(8))
+
+        // [0,1,1,2,3,5,8,13]
+    </script>
+</body>
+
+</html>

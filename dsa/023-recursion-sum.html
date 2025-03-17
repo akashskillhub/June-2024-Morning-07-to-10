@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const forSum = (arr) => {
+            let sum = 0
+            for (let i = 0; i < arr.length; i++) {
+                sum += arr[i]
+            }
+            return sum
+        }
+        console.log(forSum([1, 2, 3, 4])) // 10
+
+        // arr[0]+arr[1]+arr[2]+arr[3]
+
+        const recSum = (arr, i) => {
+            if (i === arr.length) {
+                return 0
+            }
+            return arr[i] + recSum(arr, i + 1)
+
+        }
+        console.log(recSum([1, 2, 3, 4], 0))
+
+
+
+    </script>
+</body>
+
+</html>

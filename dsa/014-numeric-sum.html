@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            Calculate the sum of all numeric values in an object.
+            Input: {a: 10, b: 20, c: 'hello', d: 30}
+            Output: 60 (sum of numeric values)
+        */
+
+        const obj = { a: 10, b: 20, c: 'hello', d: 30 }
+        let sum = 0
+        for (const key in obj) {
+            if (typeof obj[key] === "number") {
+                sum += obj[key]
+            }
+        }
+        console.log(sum)
+
+
+        // bubble sort 
+        // selction sort
+        // insersion sort
+        // merge sort
+        // quick sort 
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script type="module">
+        import { split, join } from './029-utility.js'
+
+        /*
+            Q : Write a function that removes all occurrences of a given character from a string.
+            
+        */
+
+        const removeChar = (str, charToRemove) => { }
+        console.log(removeChar("hello world", "o")) //hell wrld
+
+
+        /*
+            Q 2 : Find the most frequent character in a given string.
+        */
+        const mostFrequentChar = (str) => {
+            const arr = split(str)
+            // console.log(arr)
+            const result = {}
+            for (let i = 0; i < arr.length; i++) {
+                if (result[arr[i]]) {
+                    result[arr[i]] += 1
+                } else {
+                    result[arr[i]] = 1
+                }
+            }
+            let char = [], large = 0
+            for (const key in result) {
+                if (result[key] > large) {
+                    large = result[key]
+                    char = []
+                }
+                if (result[key] === large) {
+                    char.push(key)
+                }
+            }
+            return char
+
+        }
+
+        console.log(mostFrequentChar("aabbc")) // l
+        console.log(mostFrequentChar("hello")) // l
+        // console.log(mostFrequentChar("mississippi")) // i
+
+
+        /*
+           Q 3 Write a function that capitalizes the first letter of each word in a sentence.
+        */
+
+
+        const capitalizeWords = (str) => {
+            // const arr = str.split(" ")
+            const arr = split(str, " ")
+            // console.log(arr)
+
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = arr[i][0].toUpperCase() + arr[i].slice(1, arr[i].length)
+            }
+            // return arr.join(" ")
+            return join(arr, " ")
+
+        }
+
+        // console.log(capitalizeWords("hello world")) // Hello World
+
+
+    </script>
+</body>
+
+</html>

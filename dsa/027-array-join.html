@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const join = (arr, delimiter) => {
+            let str = ""
+            for (let i = 0; i < arr.length; i++) {
+                if (i === arr.length - 1) {
+                    str += arr[i]
+                } else {
+                    str += arr[i] + delimiter
+                }
+            }
+            return str
+        }
+
+        console.log(join(["hello", "world"], "-")) // hello-world
+        console.log(join(["hello", "world"], "$")) // hello world
+        console.log(join(["hello", "world"], "")) //  helloworld
+
+    </script>
+</body>
+
+</html>

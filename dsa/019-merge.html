@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const merge = (arr1, arr2) => {
+
+            const result = []
+            let i = 0, j = 0
+            while (i < arr1.length && j < arr2.length) {
+                if (arr1[i] < arr2[j]) {
+                    result.push(arr1[i])
+                    i++
+                } else {
+                    result.push(arr2[j])
+                    j++
+                }
+            }
+            while (i < arr1.length) {
+                result.push(arr1[i])
+                i++
+            }
+            while (j < arr2.length) {
+                result.push(arr2[j])
+                j++
+            }
+            return result
+        }
+
+        const mergeSort = (arr) => {
+            if (arr.length === 1) {
+                return arr
+            }
+            const center = Math.floor(arr.length / 2)
+            const left = mergeSort(arr.slice(0, center))
+            const right = mergeSort(arr.slice(center, arr.length))
+
+            return merge(left, right)
+
+        }
+        console.log(mergeSort([40, 3, 55]))
+        // left =[40] , right=[], left =[3], right=[55]
+        // [40] , [3,55]
+        // [3,40,55]
+
+
+        // small or almost sorted => bubble, O(n^2), O(n)
+
+        // large                  => merge , O(n Log n) , O(n^2)   
+
+        /*
+
+            Algorithm	   Best Case   Average Case	    Worst Case	Space Complexity	Stable?
+            Bubble Sort	    O(n)	    O(n²)	        O(n²)	        O(1)	          ✅ Yes
+            Selection Sort	O(n²)	    O(n²)	        O(n²)	        O(1)	          ❌ No
+            Insertion Sort	O(n)	    O(n²)	        O(n²)	        O(1)	          ✅ Yes
+            Merge Sort	    O(n log n)	O(n log n)	    O(n log n)	    O(n)	          ✅ Yes
+        */
+        /*
+            Bubble Sort: Only useful for small data sets or nearly sorted data.
+            Selection Sort: Simple but inefficient for large datasets.
+            Insertion Sort: Good for small or nearly sorted data.
+            Merge Sort: Best for large datasets, ensures O(n log n) time complexity.
+        */
+
+        /*
+            stack
+            queues
+            linked list
+        */
+    </script>
+
+</body>
+
+</html>

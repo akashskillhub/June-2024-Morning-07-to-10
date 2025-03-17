@@ -1,0 +1,42 @@
+[
+    {
+        "title": "E-commerce App",
+        "description": "An e-commerce platform built with MERN stack"
+    },
+    {
+        "title": "Social Media App",
+        "description": "A social media platform with real-time chat"
+    },
+    {
+        "title": "Food Delivery App",
+        "description": "An app to order food online and track delivery"
+    },
+    {
+        "title": "Health & Fitness Tracker",
+        "description": "A mobile app for tracking workouts and diet plans"
+    },
+    {
+        "title": "Task Management System",
+        "description": "A tool for teams to manage projects and tasks"
+    },
+    {
+        "title": "Online Learning Platform",
+        "description": "A web app for online courses and certifications"
+    },
+    {
+        "title": "Job Portal",
+        "description": "A platform for job seekers and recruiters"
+    },
+    {
+        "title": "Real Estate Listing",
+        "description": "A website to buy, sell, and rent properties"
+    },
+    {
+        "title": "Expense Tracker",
+        "description": "An app to manage personal and business expenses"
+    },
+    {
+        "title": "Car Rental Service",
+        "description": "A car booking platform with rental and ride-sharing options"
+    }
+]

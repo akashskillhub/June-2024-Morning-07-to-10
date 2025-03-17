@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 4*3*2*1
+        const facto = (n) => {
+            let result = 1
+            for (let i = n; i >= 1; i--) {
+                result *= i
+            }
+            return result
+        }
+        console.log(facto(5)) // 24
+
+
+        const recFacto = (n) => {
+            if (n === 1) {
+                return 1
+            }
+            return n * recFacto(n - 1)
+            /*
+                    5 * recFacto(4)
+                        4 * recFacto(3)
+                           3 * recFacto(2) 
+                                2 * recFacto(1)
+           
+           
+                   5 * 24
+                        4 * 6
+                           3 * 2
+                                2 * 1
+
+            */
+        }
+        console.log(recFacto(5)) // 120
+
+
+    </script>
+</body>
+
+</html>

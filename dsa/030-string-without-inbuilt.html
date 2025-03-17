@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- <script type="module" src="./029-utility.js"></script> -->
+
+    <script type="module">
+        import { split, reverse, join } from "./029-utility.js"
+        const str = "hello" // olleh
+        const result = join(reverse(split(str)))
+        console.log(result)
+
+        // const result = split(str)
+        // const rev = reverse(result)
+        // const x = join(rev, "")
+        // console.log(x)
+
+
+    </script>
+
+</body>
+
+</html>

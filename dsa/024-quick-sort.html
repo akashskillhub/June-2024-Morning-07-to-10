@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const swap = (arr, i, j) => {
+            let temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+            return arr
+        }
+
+        // console.log(swap([4, 6, 1, 7, 2, 5], 1, 3)) // [4,7,1,6,2,5]
+
+        // const arr = [4, 6, 1, 7, 2, 5] 
+
+        const pivot = (arr, pivotIndex = 0, endIndex = arr.length) => {
+            let swapIndex = pivotIndex
+            for (let i = pivotIndex + 1; i < endIndex; i++) {
+                if (arr[pivotIndex] > arr[i]) {
+                    swapIndex++
+                    swap(arr, swapIndex, i)
+                }
+            }
+            swap(arr, swapIndex, pivotIndex)
+            return swapIndex
+        }
+
+        const quickSort = (arr, start = 0, end = arr.length) => {
+            if (start < end) {
+                const swapIndex = pivot(arr, start, end)
+                quickSort(arr, start, swapIndex)
+                quickSort(arr, swapIndex + 1, arr.length)
+            }
+            return arr
+        }
+        console.log(quickSort([4, 6, 1, 7, 2, 5]))
+
+
+    </script>
+</body>
+
+</html>

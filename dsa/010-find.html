@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // create a array.findINdex()
+
+        const findIndex = (num) => {
+            const arr = [10, 20, 30, 40]
+            for (let i = 0; i < arr.length; i++) {
+                if (num === arr[i]) {
+                    return i
+                }
+            }
+            return -1
+        }
+        console.log(findIndex(20)) // 1
+        console.log(findIndex(40)) // 3
+        console.log(findIndex(50)) // -1
+
+        // ----------------------------------------------------------------------------------------------
+
+
+        const findValue = (arr, val) => {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] === val) {
+                    return true
+                }
+            }
+            return false
+        }
+        const findUnique = (arr) => {
+            const result = []
+            for (let i = 0; i < arr.length; i++) {
+                if (!findValue(result, arr[i])) {
+                    result.push(arr[i])
+                }
+            }
+            return result
+        }
+
+        console.log(findUnique([1, 1, 2, 2, 3, 3])) // [1,2,3]
+        console.log(findUnique([10, 20, 20, 20])) // [10,20]
+
+
+
+        // -----------------------------------------------------------------------
+        // find occurance
+
+
+        const findOccurance = (arr) => {
+            const result = {}
+            for (let i = 0; i < arr.length; i++) {
+                if (result[arr[i]]) {
+                    result[arr[i]] = result[arr[i]] + 1
+                } else {
+                    result[arr[i]] = 1
+                }
+            }
+            return result
+        }
+        console.log(findOccurance([10, 20, 30, 30])) // {"10":1, "20":1, "30":2}
+
+        // ---------------------------------------
+
+        const findKeyByValue = (obj, val) => {
+            for (const key in obj) {
+                if (obj[key] === val) {
+                    return key
+                }
+            }
+            return "not found"
+        }
+        console.log(findKeyByValue({ name: "john", age: 20, city: "lonodn" }, "london")) // city
+        console.log(findKeyByValue({ name: "john", age: 20, city: "lonodn" }, "usa")) // not found
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // num is divisible by 1 and itself (starts from 2)
+
+
+        const isPrime = (num) => {
+            if (num <= 1) {
+                return false
+            }
+            for (let i = 2; i <= num / 2; i++) {
+                if (num % i === 0) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        console.log(isPrime(1)) // true
+        console.log(isPrime(15)) // false
+
+
+        // task 1
+        const getPrimeFromArray = (arg) => {
+            const result = []
+            for (let i = 0; i < arg.length; i++) {
+                if (isPrime(arg[i])) {
+                    result.push(arg[i])
+                }
+            }
+            return result
+
+        }
+
+        const arr = [1, 5, 3, 77, 15, 69, 7] // O(n^2)
+        console.log(getPrimeFromArray(arr)) // expected output [3,5,7]
+
+
+        // task 2
+        // print first 25 prime numbers
+        // 25
+        const nPrime = (num) => {
+            const result = []
+            for (let i = 2; result.length < num; i++) {
+                if (isPrime(i)) {
+                    result.push(i)
+                }
+            }
+            return result
+        }
+        console.log(nPrime(25))
+
+
+    </script>
+</body>
+
+</html>

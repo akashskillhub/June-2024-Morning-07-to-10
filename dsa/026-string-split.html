@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const split = (str, delimiter) => {
+            const result = []
+            let temp = ""
+            for (let i = 0; i < str.length; i++) {
+                if (delimiter === undefined) {
+                    result.push(str[i])
+                } else {
+                    if (str[i] === delimiter) {
+                        result.push(temp)
+                        temp = ""
+                    } else {
+                        temp += str[i]
+                    }
+                }
+            }
+            result.push(temp)
+            return result
+        }
+
+        console.log(split("hello world", " "))
+
+
+    </script>
+</body>
+
+</html>

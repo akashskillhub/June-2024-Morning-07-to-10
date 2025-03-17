@@ -1,0 +1,142 @@
+    [
+        {
+            "name": "elon",
+            "age": 22,
+            "mobile": 5520022000,
+            "gender": "male",
+            "active": false,
+            "budget": 5000,
+            "skills": [
+                "html",
+                "css",
+                "php"
+            ]
+        },
+        {
+            "name": "bill",
+            "age": 25,
+            "mobile": 5520022008,
+            "gender": "male",
+            "active": true,
+            "budget": 25000,
+            "skills": [
+                "html",
+                "css",
+                "react"
+            ]
+        },
+        {
+            "name": "ross",
+            "age": 32,
+            "mobile": 8820022008,
+            "gender": "male",
+            "active": false,
+            "budget": 1000,
+            "skills": [
+                "html",
+                "css",
+                "angular",
+                "node"
+            ]
+        },
+        {
+            "name": "ethan",
+            "age": 24,
+            "mobile": 7820022008,
+            "gender": "male",
+            "active": true,
+            "budget": 10000,
+            "skills": [
+                "html",
+                "css",
+                "vue"
+            ]
+        },
+        {
+            "name": "monica",
+            "age": 19,
+            "mobile": 3820022008,
+            "gender": "female",
+            "active": true,
+            "budget": 8000,
+            "skills": [
+                "html",
+                "css",
+                "angular",
+                "node"
+            ]
+        },
+        {
+            "name": "Phebe",
+            "age": 33,
+            "mobile": 2220022008,
+            "gender": "female",
+            "active": true,
+            "budget": 6000,
+            "skills": [
+                "html",
+                "css",
+                "php",
+                "mongo",
+                "angular"
+            ]
+        },
+        {
+            "name": "Rachel",
+            "age": 22,
+            "mobile": 4520022008,
+            "gender": "female",
+            "active": true,
+            "budget": 3000,
+            "skills": [
+                "html",
+                "css",
+                "ionic"
+            ]
+        },
+        {
+            "name": "kate",
+            "age": 23,
+            "mobile": 2820022008,
+            "gender": "female",
+            "active": true,
+            "budget": 9000,
+            "skills": [
+                "html",
+                "css",
+                "typescript",
+                "react"
+            ]
+        },
+        {
+            "name": "SKILLHUB",
+            "age": 21,
+            "mobile": 6620022008,
+            "gender": "female",
+            "active": false,
+            "budget": 50000,
+            "skills": [
+                "html",
+                "css",
+                "angular",
+                "react",
+                "node",
+                "mongo",
+                "ionic"
+            ]
+        },
+        {
+            "name": "joe",
+            "age": 26,
+            "mobile": 6620022008,
+            "gender": "female",
+            "active": false,
+            "budget": 50000,
+            "skills": [
+                "html",
+                "css",
+                "angular",
+                "node"
+            ]
+        }
+    ]

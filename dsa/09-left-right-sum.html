@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = [1, 20, 3, 5, 10, 6]
+        // left sum = 1+20+3 = 24
+        // right sum = 5+10+6 = 21
+        const center = arr.length / 2
+        let leftSum = 0
+        let rightSum = 0
+        let oddSum = 0, evensum = 0
+
+        // O(n)
+        for (let i = 0; i < center; i++) {
+            leftSum += arr[i]
+        }
+        for (let i = center; i < arr.length; i++) {
+            rightSum += arr[i]
+        }
+        // O(n)
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 === 0) {
+                evensum += arr[i]
+            } else {
+                oddsum += arr[i]
+            }
+        }
+        // O(n)
+        console.log(leftSum);
+        console.log(rightSum);
+
+
+    </script>
+</body>
+
+</html>
